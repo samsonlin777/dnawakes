@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis女神 - 財富DNA啟動｜星際科技風格</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            background: #0a0a0f;
+            color: #e0e6ff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated Background */
+        body:before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(147, 0, 211, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0f 0%, #1a0d2e 50%, #2d1b3d 100%);
+            z-index: -2;
+        }
+        
+        /* Starfield Animation */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #8a2be2;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(10, 10, 15, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+        }
+        
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #8a2be2, #9370db, #ba55d3, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(138, 43, 226, 0.8), 0 0 60px rgba(186, 85, 211, 0.6); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+            border: 2px solid rgba(138, 43, 226, 0.2);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 3.8em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffffff, #ba55d3, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero .highlight {
+            background: linear-gradient(135deg, #00ffff, #8a2be2, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            animation: hologram 2s ease-in-out infinite;
+        }
+        
+        @keyframes hologram {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+        
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            color: #c8a2c8;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Hexagonal Grid Background */
+        .hex-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 50% 50%, #8a2be2 2px, transparent 2px);
+            background-size: 60px 60px;
+            animation: drift 20s linear infinite;
+        }
+        
+        @keyframes drift {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(60px) translateY(60px); }
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section:nth-child(even) {
+            background: rgba(26, 13, 46, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section h3 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #8a2be2, #ba55d3, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 400;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8a2be2, #ba55d3, #8a2be2, transparent);
+            animation: scan 2s ease-in-out infinite;
+        }
+        
+        @keyframes scan {
+            0%, 100% { width: 50px; opacity: 0.5; }
+            50% { width: 150px; opacity: 1; }
+        }
+        
+        .pain-points {
+            background: rgba(26, 13, 46, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            border-left: 4px solid #8a2be2;
+            padding: 50px;
+            margin: 60px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 15px 35px rgba(138, 43, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pain-points:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), transparent);
+            z-index: -1;
+        }
+        
+        .pain-points h4 {
+            color: #ba55d3;
+            font-size: 2em;
+            margin-bottom: 25px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .service-card {
+            background: rgba(26, 13, 46, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover:before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ba55d3;
+            box-shadow: 
+                0 25px 50px rgba(138, 43, 226, 0.3),
+                0 0 50px rgba(186, 85, 211, 0.2);
+        }
+        
+        .service-card h4 {
+            color: #ba55d3;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .service-card p {
+            color: #e0e6ff;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .pricing-card {
+            background: rgba(26, 13, 46, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.2);
+            overflow: hidden;
+        }
+        
+        .pricing-card:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8a2be2, #ba55d3, #9370db, #8a2be2);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .pricing-card.featured {
+            border-color: #ba55d3;
+            transform: scale(1.05);
+            box-shadow: 
+                0 25px 60px rgba(138, 43, 226, 0.4),
+                0 0 60px rgba(186, 85, 211, 0.3);
+        }
+        
+        .pricing-card.featured:before {
+            opacity: 1;
+        }
+        
+        .pricing-card.featured:after {
+            content: 'QUANTUM PREMIUM';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #8a2be2, #ba55d3);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(138, 43, 226, 0.4);
+        }
+        
+        .pricing-card:hover:before {
+            opacity: 1;
+        }
+        
+        .pricing-card h4 {
+            font-size: 2.2em;
+            color: #ba55d3;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .price {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #ffffff, #ba55d3, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            margin: 25px 0;
+            text-shadow: 0 0 30px rgba(186, 85, 211, 0.5);
+        }
+        
+        .price small {
+            font-size: 0.4em;
+            color: #9370db;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #8a2be2, #ba55d3);
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 30px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.6);
+            text-decoration: none;
+            color: white;
+        }
+        
+        /* Features List */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            position: relative;
+            padding-left: 35px;
+            color: #e0e6ff;
+            transition: color 0.3s ease;
+        }
+        
+        .features-list li:before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #8a2be2;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: pulse-icon 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-icon {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li:hover {
+            color: #ba55d3;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: rgba(26, 13, 46, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-left: 4px solid #ba55d3;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            border-color: #ba55d3;
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.3);
+        }
+        
+        .testimonial h4 {
+            color: #ba55d3;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .testimonial a {
+            color: #9370db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .testimonial a:hover {
+            color: #ba55d3;
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0a0a0f, #1a0d2e);
+            padding: 60px 0;
+            text-align: center;
+            color: #ba55d3;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 -10px 30px rgba(138, 43, 226, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>    <!-- Starfield -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- Hexagonal Grid -->
+    <div class="hex-grid"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>◊ ISIS QUANTUM ◊</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>啟動你的<span class="highlight">量子財富DNA</span><br>連結星際豐盛矩陣</h2>
+            <p>透過量子意識技術，重新編程你的財富基因序列<br>解鎖星際文明的豐盛密碼</p>
+            <a href="#pricing" class="cta-button">QUANTUM ACTIVATION</a>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="section">
+        <div class="container">
+            <h3>GALACTIC CONSCIOUSNESS AWAKENING</h3>
+            
+            <div class="pain-points">
+                <h4>EARTH COLLECTIVE FINANCIAL MATRIX</h4>
+                <p><strong>你有「#被剝削成癮症」嗎？</strong></p>
+                <p>你有渴望財富但潛意識卻害怕成功/恐懼失敗的苦難勳章？</p>
+                <p>你有"我必須付出哪些代價"才配得到豐盛自由的限制性信念或匱乏意識嗎？</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 60px 0; text-align: center;">
+                <div style="padding: 30px; background: rgba(26, 13, 46, 0.8); border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 3em; color: #ba55d3; margin-bottom: 10px; animation: glow 2s ease-in-out infinite;">20-35%</div>
+                    <p style="color: #8a2be2; text-transform: uppercase; letter-spacing: 1px;">Eastern Enlightened</p>
+                </div>
+                <div style="padding: 30px; background: rgba(26, 13, 46, 0.8); border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 3em; color: #ba55d3; margin-bottom: 10px; animation: glow 2s ease-in-out infinite; animation-delay: 0.5s;">DNA</div>
+                    <p style="color: #8a2be2; text-transform: uppercase; letter-spacing: 1px;">Quantum Storage</p>
+                </div>
+                <div style="padding: 30px; background: rgba(26, 13, 46, 0.8); border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 3em; color: #ba55d3; margin-bottom: 10px; animation: glow 2s ease-in-out infinite; animation-delay: 1s;">∞</div>
+                    <p style="color: #8a2be2; text-transform: uppercase; letter-spacing: 1px;">Galactic Potential</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin: 40px 0; text-align: center; color: #ba55d3;"><strong>#為何大多數的台灣人容易被詐騙？或是投資失利？創業失敗？生活中不斷出現的財務無底洞/想要一步登天結果導致了跌落谷底無法翻身！</strong></p>
+            
+            <p>別說台灣了，放眼整個東南亞及對岸同胞都有類似的課題，大概率只有20~35%的人數，要嘛福報深厚而成為富翁、要嘛人間清醒成為策略高人，自然跟詐騙或是財富損失之間形成能量防護罩而倖免於難！</p>
+            
+            <div style="background: rgba(26, 13, 46, 0.9); padding: 40px; border-radius: 20px; margin: 40px 0; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(15px);">
+                <h4 style="color: #ba55d3; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">MATRIX ANALYSIS PROTOCOL</h4>
+                <p>據長年觀察，我們東方人集體意識中有許多傳統式教條及限制性信念，這些限制都復刻在我們的DNA編碼中...</p>
+                <p style="margin: 20px 0; color: #ba55d3;"><strong>例如：「輕鬆賺的錢不純潔」其實對應到「我要很努力才值得成功及獎賞！」於是養成"我付出所以我偉大"的隱形傲慢及自證模式！</strong></p>
+                <p style="color: #ff6b6b; font-weight: 500;">整個東方教育真的是妥妥的「奴性意識殖民」呀！</p>
+            </div>
+            
+            <p>男性意識在工作層面總有披掛「過勞勳章」而有不負此生的錯覺；而女性意識總在家庭及親密關係中隱形沾沾自喜自己的「犧牲獎盃」！</p>
+            
+            <p>直到精疲力竭、徒勞無功、換不到自己想要的之後，才會開始自我檢視：「到底哪裡出了問題」！？</p>
+            
+            <p style="margin: 30px 0;">加上我們還有對財富底層的"罪惡感"及"扭曲思想"創造了負面經驗，潛意識顯化出故意找不對的人來辜負自己，於是形成「信念創造實相，經驗鞏固信念」的負向閉環！</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h3>QUANTUM CONSCIOUSNESS UPGRADE</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 60px 0;">
+                <div style="text-align: center; padding: 40px; background: rgba(26, 13, 46, 0.6); border-radius: 20px; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px);">
+                    <h4 style="color: #ff6b6b; margin-bottom: 20px; font-size: 1.5em; text-transform: uppercase;">❌ OLD MATRIX</h4>
+                    <p style="color: #e0e6ff;">過勞勳章 → 犧牲獎盃 → 精疲力竭 → 徒勞無功</p>
+                </div>
+                <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #8a2be2, #ba55d3); border-radius: 20px; color: white; box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);">
+                    <h4 style="margin-bottom: 20px; font-size: 1.5em; text-transform: uppercase;">✓ QUANTUM PROTOCOL</h4>
+                    <p>DNA重編程 → 天賦啟動 → 財富正向印記 → 外掛系統開啟</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.2em; text-align: center; margin: 40px 0;">雖然大部份的人都很善良，但底層因為沒有覺醒到自己就是豐盛源頭而被代代相傳的生存恐懼植入病毒，疊加的匱乏意識養出了"貪婪黑洞"，於是就容易被業力及習氣牽著走，做出許多無明的決定及行為，最後悔恨到自我放棄，大喊：「我真的不想努力了！」</p>
+            
+            <div style="background: rgba(26, 13, 46, 0.9); padding: 50px; border-radius: 25px; margin: 60px 0; backdrop-filter: blur(20px); border: 2px solid rgba(138, 43, 226, 0.4);">
+                <h4 style="color: #ba55d3; font-size: 1.8em; text-align: center; margin-bottom: 30px; text-transform: uppercase;">AWAKENING PROTOCOL INITIATED</h4>
+                
+                <div style="text-align: center; padding: 30px; background: rgba(138, 43, 226, 0.1); border-radius: 15px; margin-bottom: 30px;">
+                    <h5 style="color: #ba55d3; font-size: 1.4em; margin-bottom: 15px; text-transform: uppercase;">QUANTUM BREAKTHROUGH!</h5>
+                    <p style="font-size: 1.2em;">正是這句"我不想努力了"成為集體意識覺醒的開端</p>
+                    <p style="margin: 20px 0;">從中悟透了"原來努力是一場騙局"！</p>
+                    <p>但~在看破努力之後卻茫然了....<br>被權威教育帶大的我們，該要何去何從？！</p>
+                </div>
+                
+                <div style="padding: 40px; background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(186, 85, 211, 0.1)); border-radius: 15px; border: 2px solid #ba55d3;">
+                    <p style="font-size: 1.3em; color: #ffffff; font-weight: 500; text-align: center; line-height: 1.7;"><strong>各位，外在的財富顯化不是重點，重點是恢復你/妳與靈魂的連結，當你/妳聽見靈魂的聲音，並願意與靈魂合一，你就能拿回靈魂所攜帶的"天賦"及"財富正向印記"，真正開啟屬於你的外掛系統，活出更加無限的生命版本！</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h3>GALACTIC TRANSFORMATION RECORDS</h3>
+            <p style="text-align: center; font-size: 1.2em; color: #c8a2c8; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 1px;">Quantum success manifestations from star beings across the galaxy</p>
+            
+            <div class="testimonial">
+                <h4>◊ STELLAR QUEEN-歐若拉 PROTOCOL</h4>
+                <p>看過後會對自己的信念產生「我愛自己所以我要活出更高維真實版本的自己」之驚人啟發</p>
+                <a href="https://www.facebook.com/share/1B781L5rqp/?mibextid=wwXIfr" target="_blank">ACCESS FULL TRANSMISSION →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>◊ COSMIC EMPRESS-陳玫孜 PROTOCOL</h4>
+                <p>放下自我糾結，靈性物質兩不誤之見證分享</p>
+                <a href="https://www.facebook.com/share/r/19jJDFCVuM/" target="_blank">ACCESS FULL TRANSMISSION →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>◊ LIGHT WARRIOR ENGINEERS PROTOCOL</h4>
+                <p>香港學員夫婦的內在英雄之旅分享</p>
+                <a href="https://www.facebook.com/share/p/1EuZtLYPM1/" target="_blank">ACCESS FULL TRANSMISSION →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>◊ GALACTIC FINANCIAL OFFICER PROTOCOL</h4>
+                <p>探尋自我，靈魂升級之財富報告分享</p>
+                <a href="https://www.facebook.com/share/1Avdhdu9Bo/" target="_blank">ACCESS FULL TRANSMISSION →</a>
+            </div>
+            
+            <div style="text-align: center; margin: 50px 0;">
+                <a href="https://www.facebook.com/share/p/1LYXJyD3Pm/" target="_blank" style="color: #ba55d3; text-decoration: none; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">
+                    ◊ ISIS QUANTUM MISSION MANIFEST →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Content Section -->
+    <section class="section">
+        <div class="container">
+            <h3>QUANTUM DNA TRANSFORMATION MATRIX</h3>
+            
+            <div style="text-align: center; margin: 60px 0; padding: 50px; background: rgba(26, 13, 46, 0.9); border-radius: 25px; backdrop-filter: blur(20px); border: 2px solid rgba(138, 43, 226, 0.4);">
+                <h4 style="color: #ba55d3; font-size: 2.2em; margin-bottom: 25px; text-transform: uppercase;">GALACTIC SOUL WEALTH CODEX</h4>
+                <p style="font-size: 1.3em; color: #e0e6ff; margin-bottom: 20px;">一份「#迅猛更新 × #深度轉化」的神級靈魂財富報告</p>
+                <p style="font-size: 1.2em; color: #c8a2c8; margin-bottom: 20px;">這不僅僅是一份報告，更是#解鎖你/妳豐盛源頭的關鍵密碼！</p>
+                <div style="width: 120px; height: 2px; background: linear-gradient(90deg, transparent, #8a2be2, #ba55d3, #8a2be2, transparent); margin: 30px auto; animation: scan 2s ease-in-out infinite;"></div>
+                <p style="font-size: 1.1em; color: #e0e6ff; text-transform: uppercase; letter-spacing: 1px;">『PERSONAL SOUL & WEALTH DNA ENCODING REPORT』電子文字檔，內容精準揭示：</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>◊ 01. SOUL BLUEPRINT SCAN</h4>
+                    <p>認識你/妳獨一無二的靈魂特質及定位分析：當下靈魂狀態、靈魂原型與光譜、靈魂之名（未必每個人都有，這顯示你是主體輪回，還是意識綜合體體驗）、靈魂頻率....等族繁不及備載之眼花撩亂項目~</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 02. SOUL GIFT ACTIVATION</h4>
+                    <p>靈魂的當下課題指引及靈魂天賦：發掘你與生俱來的財富天賦與優勢！明確知道此刻該跨越什麼，才能迎向豐盛！你此刻的能量位置為何財富受阻？</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 03. STELLAR DNA SYNC</h4>
+                    <p>對焦太陽系的星際DNA：讓你知道除了擁有地球母親的支持外，你還有星際母體的資源、法源、質能....供你使用及創造！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 04. WEALTH CODE DECRYPT</h4>
+                    <p>財富印記大解密：找出深藏的「正向財富印記」來轉化成物質豐盛，及需要轉化的「毀滅性業力印記」來加以銷毀！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 05. NEURAL MATRIX LIBERATION</h4>
+                    <p>解密大腦的神經系統枷鎖：揪出"目前"那些潛意識裡阻礙你致富的限制性信念！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 06. SOUL GUIDE TRANSMISSION</h4>
+                    <p>你/妳的靈魂之溫情告白及指導靈恨鐵不成鋼的敲腦袋！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 07. ANCESTRAL KARMA PURGE</h4>
+                    <p>肉體繼承祖先的財富負面記憶：當我們擁抱這具身體所承載的「業力模式及集體意識」，就能在無限源頭的陪伴下重新編碼你的DNA！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 08. KUNDALINI FIRE PROTOCOL</h4>
+                    <p>光是從靈魂與財富報告了解自己有什麼用！頂多因為理解而釋懷一些心結~<br><br>
+                    我們真正的目標是要從「神經系統」移除「限制性信念」及「老舊的業力模式」！<br><br>
+                    #Isis會使出看家本領：［🔥 啟動拙火×障礙黑洞轉化術］帶領你/妳去焚燒財富的負面業力因子，得到迅猛轉化，只要你/妳願意按表操課，就能真正做到轉識成智、轉虧為盈、離苦得樂！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>◊ 09. QUANTUM DNA IMPLANT</h4>
+                    <p><strong>而最令人振奮的核心服務就是：</strong><br><br>
+                    ✨從無限源頭下載並生成【DNA財富編碼·松果體啟動儀式】✨<br><br>
+                    Isis 愛老師將親自引導，將這組專屬於你的豐盛「財富DNA編碼」精準直接輸入你的能量核心-松果體，執行開啟外掛程式！<br><br>
+                    <strong>只要照著你的財富報告的操練方式，按表操課21~100天</strong><br>
+                    你/妳將啟動豐盛通道：開啟靈魂深處的財富泉源，讓豐沛能量自然流動！<br>
+                    三個月後"有感"活出豐盛：這不是遙遠的承諾！啟動後，你將親身經歷內在豐盛感與外在財富流的顯著轉變！</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 80px 0; padding: 50px; background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(186, 85, 211, 0.1)); border-radius: 25px; border: 2px solid #ba55d3; backdrop-filter: blur(20px);">
+                <h4 style="color: #ba55d3; font-size: 2em; margin-bottom: 25px; text-transform: uppercase;">◊ QUANTUM BONUS PROTOCOL ◊</h4>
+                <p style="font-size: 1.5em; color: #ffffff; margin-bottom: 15px;"><strong>21 DAYS PINEAL GLAND FULL ACTIVATION</strong></p>
+                <p style="color: #c8a2c8; text-transform: uppercase; letter-spacing: 1px;">（共八支錄播影片，陪伴靈性夥伴突破腦意識圍籬，覺知力及連結源頭能力大增）</p>
+                <p style="color: #8a2be2; margin-top: 25px; font-style: italic;">*這是你靈魂等待已久的更新與轉機！</p>
+            </div>
+        </div>
+    </section>9370db;">#附上見證截圖讓大家更有信心</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">&copy; 2025 ISIS QUANTUM DNA ACTIVATION MATRIX</p>
+            <p style="color: rgba(186, 85, 211, 0.8); font-size: 1em; text-transform: uppercase; letter-spacing: 1px;">CONNECTING HEARTS ACROSS THE GALAXY ◊</p>
+            <div style="margin-top: 30px; font-size: 0.9em; color: rgba(138, 43, 226, 0.6); text-transform: uppercase; letter-spacing: 1px;">
+                <p>GALACTIC SPIRITUAL SERVICES | QUANTUM WEALTH TRANSFORMATION | CONSCIOUSNESS ASCENSION PROTOCOLS</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 150;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Initialize starfield
+        createStarfield();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.2;
+            
+            // Move hex grid
+            const hexGrid = document.querySelector('.hex-grid');
+            if (hexGrid) {
+                hexGrid.style.transform = `translateY(${rate}px)`;
+            }
+            
+            // Move hero background circle
+            const heroCircle = document.querySelector('.hero:before');
+            if (heroCircle) {
+                const hero = document.querySelector('.hero');
+                hero.style.transform = `translateY(${rate * 0.5}px)`;
+            }
+        });
+        
+        // Add intersection observer for animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .pricing-card, .testimonial, .pain-points').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+        
+        // Enhanced hover effects
+        document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add quantum glow effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            const header = document.querySelector('.header');
+            const glowIntensity = Math.sin(scrollPercentage * Math.PI * 6) * 0.4 + 0.6;
+            header.style.boxShadow = `0 0 ${glowIntensity * 40}px rgba(138, 43, 226, ${glowIntensity * 0.6})`;
+        });
+        
+        // Random star twinkling
+        setInterval(() => {
+            const stars = document.querySelectorAll('.star');
+            const randomStar = stars[Math.floor(Math.random() * stars.length)];
+            if (randomStar) {
+                randomStar.style.background = `hsl(${Math.random() * 60 + 270}, 70%, 70%)`;
+                setTimeout(() => {
+                    randomStar.style.background = '#8a2be2';
+                }, 500);
+            }
+        }, 200);
+        
+        // Quantum button effects
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(45deg, #ba55d3, #ff00ff)';
+                this.style.boxShadow = '0 0 30px rgba(186, 85, 211, 0.8)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(45deg, #8a2be2, #ba55d3)';
+                this.style.boxShadow = '0 10px 30px rgba(138, 43, 226, 0.4)';
+            });
+        });
+    </script>
+</body>
+</html>
