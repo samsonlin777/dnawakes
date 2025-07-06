@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis女神 - 財富DNA啟動｜紫調簡約風格</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255,255,255,0.98);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(157, 78, 221, 0.1);
+        }
+        
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #7b2cbf, #9d4edd, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="%239d4edd" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #7b2cbf, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+        
+        .hero .highlight {
+            background: linear-gradient(135deg, #c77dff 0%, #e0aaff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 400;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            color: #6c757d;
+            font-weight: 300;
+        }
+        
+        /* Geometric Elements */
+        .geometric {
+            position: absolute;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            opacity: 0.4;
+        }
+        
+        .geometric-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            transform: rotate(45deg);
+            border-color: rgba(199, 125, 255, 0.3);
+        }
+        
+        .geometric-2 {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            top: 60%;
+            right: 15%;
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+        
+        .geometric-3 {
+            width: 120px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: linear-gradient(135deg, rgba(199, 125, 255, 0.1), rgba(224, 170, 255, 0.1));
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .section h3 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #7b2cbf, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            position: relative;
+        }
+        
+        .section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+        }
+        
+        .pain-points {
+            background: #ffffff;
+            border-left: 4px solid #9d4edd;
+            padding: 50px;
+            margin: 60px 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(157, 78, 221, 0.1);
+        }
+        
+        .pain-points h4 {
+            color: #7b2cbf;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .service-card {
+            background: #ffffff;
+            border: 1px solid rgba(157, 78, 221, 0.15);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(157, 78, 221, 0.15);
+            border-color: #9d4edd;
+        }
+        
+        .service-card h4 {
+            color: #7b2cbf;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .service-card p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .pricing-card {
+            background: #ffffff;
+            border: 2px solid rgba(157, 78, 221, 0.2);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(157, 78, 221, 0.08);
+        }
+        
+        .pricing-card.featured {
+            border-color: #9d4edd;
+            transform: scale(1.03);
+            box-shadow: 0 20px 60px rgba(157, 78, 221, 0.2);
+        }
+        
+        .pricing-card.featured:before {
+            content: '推薦方案';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 80px rgba(157, 78, 221, 0.15);
+        }
+        
+        .pricing-card h4 {
+            font-size: 1.8em;
+            color: #7b2cbf;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .price {
+            font-size: 3em;
+            background: linear-gradient(45deg, #7b2cbf, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            margin: 30px 0;
+        }
+        
+        .price small {
+            font-size: 0.4em;
+            color: #6c757d;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 30px 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.3);
+            text-decoration: none;
+            color: white;
+        }
+        
+        /* Features List */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f3f4;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .features-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #9d4edd;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: #ffffff;
+            border: 1px solid rgba(157, 78, 221, 0.15);
+            border-left: 4px solid #9d4edd;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.08);
+        }
+        
+        .testimonial h4 {
+            color: #7b2cbf;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .testimonial a {
+            color: #9d4edd;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .testimonial a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: 300;
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>    <!-- Geometric Elements -->
+    <div class="geometric geometric-1"></div>
+    <div class="geometric geometric-2"></div>
+    <div class="geometric geometric-3"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>ISIS 女神</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>啟動你專屬的<span class="highlight">財富DNA編碼</span><br>重新連結豐盛源頭</h2>
+            <p>科學化靈性方法，系統性解除限制性信念，精準植入財富正向印記</p>
+            <a href="#pricing" class="cta-button">開始財富轉化</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section">
+        <div class="container">
+            <h3>現代人的財富困境分析</h3>
+            
+            <div class="pain-points">
+                <h4>東方集體意識中的財富障礙</h4>
+                <p><strong>你有「#被剝削成癮症」嗎？</strong></p>
+                <p>你有渴望財富但潛意識卻害怕成功/恐懼失敗的苦難勳章？</p>
+                <p>你有"我必須付出哪些代價"才配得到豐盛自由的限制性信念或匱乏意識嗎？</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">20-35%</span>
+                    <div class="stat-label">東亞地區財富自由人口比例</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">東方人都有傳統財富限制信念</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">DNA</span>
+                    <div class="stat-label">限制性信念儲存位置</div>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin: 40px 0; text-align: center;"><strong>#為何大多數的台灣人容易被詐騙？或是投資失利？創業失敗？生活中不斷出現的財務無底洞/想要一步登天結果導致了跌落谷底無法翻身！</strong></p>
+            
+            <p>別說台灣了，放眼整個東南亞及對岸同胞都有類似的課題，大概率只有20~35%的人數，要嘛福報深厚而成為富翁、要嘛人間清醒成為策略高人，自然跟詐騙或是財富損失之間形成能量防護罩而倖免於難！</p>
+            
+            <div style="background: #ffffff; padding: 40px; border-radius: 12px; margin: 40px 0; border-left: 4px solid #9d4edd; box-shadow: 0 10px 40px rgba(157, 78, 221, 0.1);">
+                <h4 style="color: #7b2cbf; margin-bottom: 20px;">核心問題分析</h4>
+                <p>據長年觀察，我們東方人集體意識中有許多傳統式教條及限制性信念，這些限制都復刻在我們的DNA編碼中...</p>
+                <p style="margin: 20px 0; color: #9d4edd;"><strong>例如：「輕鬆賺的錢不純潔」其實對應到「我要很努力才值得成功及獎賞！」於是養成"我付出所以我偉大"的隱形傲慢及自證模式！</strong></p>
+                <p style="color: #e74c3c; font-weight: 500;">整個東方教育真的是妥妥的「奴性意識殖民」呀！</p>
+            </div>
+            
+            <p>男性意識在工作層面總有披掛「過勞勳章」而有不負此生的錯覺；而女性意識總在家庭及親密關係中隱形沾沾自喜自己的「犧牲獎盃」！</p>
+            
+            <p>直到精疲力竭、徒勞無功、換不到自己想要的之後，才會開始自我檢視：「到底哪裡出了問題」！？</p>
+            
+            <p style="margin: 30px 0;">加上我們還有對財富底層的"罪惡感"及"扭曲思想"創造了負面經驗，潛意識顯化出故意找不對的人來辜負自己，於是形成「信念創造實相，經驗鞏固信念」的負向閉環！</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h3>系統化解決方案</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 60px 0;">
+                <div style="text-align: center; padding: 40px; background: #ffffff; border-radius: 12px; box-shadow: 0 10px 40px rgba(157, 78, 221, 0.08);">
+                    <h4 style="color: #e74c3c; margin-bottom: 20px; font-size: 1.5em;">❌ 傳統努力模式</h4>
+                    <p style="color: #6c757d;">過勞勳章 → 犧牲獎盃 → 精疲力竭 → 徒勞無功</p>
+                </div>
+                <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #9d4edd, #c77dff); border-radius: 12px; color: white;">
+                    <h4 style="margin-bottom: 20px; font-size: 1.5em;">✓ 靈魂連結模式</h4>
+                    <p>DNA重編程 → 天賦啟動 → 財富正向印記 → 外掛系統開啟</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.2em; text-align: center; margin: 40px 0;">雖然大部份的人都很善良，但底層因為沒有覺醒到自己就是豐盛源頭而被代代相傳的生存恐懼植入病毒，疊加的匱乏意識養出了"貪婪黑洞"，於是就容易被業力及習氣牽著走，做出許多無明的決定及行為，最後悔恨到自我放棄，大喊：「我真的不想努力了！」</p>
+            
+            <div style="background: #ffffff; padding: 50px; border-radius: 16px; margin: 60px 0; box-shadow: 0 15px 50px rgba(157, 78, 221, 0.1); border: 1px solid rgba(157, 78, 221, 0.15);">
+                <h4 style="color: #9d4edd; font-size: 1.8em; text-align: center; margin-bottom: 30px;">覺醒的轉折點</h4>
+                
+                <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 12px; margin-bottom: 30px;">
+                    <h5 style="color: #9d4edd; font-size: 1.4em; margin-bottom: 15px;">太好了！</h5>
+                    <p style="font-size: 1.2em;">正是這句"我不想努力了"成為集體意識覺醒的開端</p>
+                    <p style="margin: 20px 0;">從中悟透了"原來努力是一場騙局"！</p>
+                    <p>但~在看破努力之後卻茫然了....<br>被權威教育帶大的我們，該要何去何從？！</p>
+                </div>
+                
+                <div style="padding: 40px; background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px; border: 2px solid #9d4edd;">
+                    <p style="font-size: 1.3em; color: #2c3e50; font-weight: 500; text-align: center; line-height: 1.7;"><strong>各位，外在的財富顯化不是重點，重點是恢復你/妳與靈魂的連結，當你/妳聽見靈魂的聲音，並願意與靈魂合一，你就能拿回靈魂所攜帶的"天賦"及"財富正向印記"，真正開啟屬於你的外掛系統，活出更加無限的生命版本！</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h3>客戶成功案例</h3>
+            <p style="text-align: center; font-size: 1.1em; color: #6c757d; margin-bottom: 60px;">在舉辦「巳火夏至啟動財富DNA後」，透過兩位女神級靈性老師的自發性分享，忽然一天內陸續有四十幾位還在迷茫、或是想要精益求精的天使們私訊我想要參加活動</p>
+            
+            <div class="testimonial">
+                <h4>🌟 高維星際女王-歐若拉老師</h4>
+                <p>看過後會對自己的信念產生「我愛自己所以我要活出更高維真實版本的自己」之驚人啟發</p>
+                <a href="https://www.facebook.com/share/1B781L5rqp/?mibextid=wwXIfr" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>✨ 宇宙仙后-陳玫孜老師</h4>
+                <p>放下自我糾結，靈性物質兩不誤之見證分享</p>
+                <a href="https://www.facebook.com/share/r/19jJDFCVuM/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>🚀 星際光行天使及星際光能工程師</h4>
+                <p>香港學員夫婦的內在英雄之旅分享</p>
+                <a href="https://www.facebook.com/share/p/1EuZtLYPM1/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>💎 銀河央行鳳凰財務長</h4>
+                <p>探尋自我，靈魂升級之財富報告分享</p>
+                <a href="https://www.facebook.com/share/1Avdhdu9Bo/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div style="text-align: center; margin: 50px 0;">
+                <a href="https://www.facebook.com/share/p/1LYXJyD3Pm/" target="_blank" style="color: #9d4edd; text-decoration: none; font-weight: 500;">
+                    📖 Isis愛老師發起此服務項目的初衷與願心 →
+                </a>
+            </div>
+        </div>
+    </section>background: linear-gradient(135deg, #f8f9fa, rgba(157, 78, 221, 0.05)); border-radius: 16px;">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <p style="color: #9d4edd; font-size: 1.4em; margin-bottom: 30px; font-weight: 500;">感恩無限</p>
+                    <p style="color: #9d4edd; font-size: 1.4em; margin-bottom: 30px; font-weight: 500;">感恩大家願意一起跨維度揚升</p>
+                    
+                    <div style="margin: 40px 0; font-size: 1.1em; color: #2c3e50; line-height: 1.8;">
+                        <p style="margin: 15px 0;">#從此地球不再是星際監獄</p>
+                        <p style="margin: 15px 0;">#地球直接揚升成享受創新創富創樂的靈魂樂園</p>
+                        <p style="margin: 25px 0; font-size: 1.3em; font-weight: 500;"><strong>#Isis 合十禮敬每一位勇敢的靈魂</strong></p>
+                        <p style="margin: 15px 0; font-style: italic; color: #6c757d;">#附上見證截圖讓大家更有信心</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 1.1em; margin-bottom: 15px;">&copy; 2025 Isis女神 財富DNA啟動系統</p>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1em;">讓你的心，觸動更多的心</p>
+            <div style="margin-top: 30px; font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                <p>專業靈性服務 | 科學化財富轉化 | 系統性意識覺醒</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for geometric elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            
+            document.querySelectorAll('.geometric').forEach((el, index) => {
+                el.style.transform = `translateY(${rate * (index + 1) * 0.2}px) ${index === 0 ? 'rotate(45deg)' : ''}`;
+            });
+        });
+        
+        // Add intersection observer for animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .pricing-card, .testimonial, .pain-points').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Enhanced hover effects
+        document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add subtle gradient animation to geometric elements
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            document.querySelectorAll('.geometric').forEach((el, index) => {
+                const saturation = 30 + (index * 10);
+                const lightness = 85 + (index * 3);
+                el.style.borderColor = `hsl(${280 + hue/10}, ${saturation}%, ${lightness}%)`;
+            });
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis女神 - 財富DNA啟動｜靈性紫調風格</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #4a154b 0%, #5b2c6f 25%, #7b2cbf 50%, #9d4edd 75%, #c77dff 100%);
+            color: #f8f9fa;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(74, 21, 75, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(199, 125, 255, 0.3);
+        }
+        
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #c77dff, #e0aaff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(199, 125, 255, 0.5);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.8), rgba(157, 78, 221, 0.6)), 
+                        radial-gradient(circle at 20% 80%, rgba(199, 125, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(123, 44, 191, 0.3) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23c77dff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #ffffff, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            line-height: 1.2;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            color: #e0aaff;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #c77dff, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { width: 8px; height: 8px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 12px; height: 12px; top: 60%; left: 80%; animation-delay: -2s; }
+        .particle:nth-child(3) { width: 6px; height: 6px; top: 80%; left: 20%; animation-delay: -4s; }
+        .particle:nth-child(4) { width: 10px; height: 10px; top: 30%; left: 70%; animation-delay: -6s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+        }
+        
+        .section:nth-child(even) h3 {
+            background: linear-gradient(45deg, #7b2cbf, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section:nth-child(even) p {
+            color: #2c3e50;
+        }
+        
+        .section h3 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #ffffff, #e0aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            position: relative;
+        }
+        
+        .section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(45deg, #c77dff, #e0aaff);
+            border-radius: 2px;
+        }
+        
+        .pain-points {
+            background: rgba(255, 255, 255, 0.95);
+            border-left: 4px solid #c77dff;
+            padding: 50px;
+            margin: 60px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(74, 21, 75, 0.3);
+            color: #2c3e50;
+        }
+        
+        .pain-points h4 {
+            color: #7b2cbf;
+            font-size: 2em;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            color: #2c3e50;
+            box-shadow: 0 10px 30px rgba(74, 21, 75, 0.1);
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(199, 125, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .service-card:hover:before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(157, 78, 221, 0.3);
+            border-color: #9d4edd;
+        }
+        
+        .service-card h4 {
+            color: #7b2cbf;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .service-card p {
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(199, 125, 255, 0.1));
+            border: 2px solid rgba(199, 125, 255, 0.4);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 40px rgba(74, 21, 75, 0.3);
+        }
+        
+        .pricing-card.featured {
+            border-color: #e0aaff;
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(199, 125, 255, 0.15));
+            box-shadow: 0 25px 60px rgba(157, 78, 221, 0.4);
+        }
+        
+        .pricing-card.featured:before {
+            content: '推薦方案';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #c77dff, #e0aaff);
+            color: #4a154b;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(157, 78, 221, 0.4);
+        }
+        
+        .pricing-card h4 {
+            font-size: 2.2em;
+            color: #e0aaff;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        .price {
+            font-size: 3.2em;
+            background: linear-gradient(45deg, #ffffff, #e0aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            margin: 25px 0;
+        }
+        
+        .price small {
+            font-size: 0.4em;
+            color: #c77dff;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #c77dff, #e0aaff);
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            color: #4a154b;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 30px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(199, 125, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(199, 125, 255, 0.5);
+            text-decoration: none;
+            color: #4a154b;
+            background: linear-gradient(45deg, #e0aaff, #ffffff);
+        }
+        
+        /* Features List */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(199, 125, 255, 0.2);
+            position: relative;
+            padding-left: 35px;
+            color: #f8f9fa;
+        }
+        
+        .features-list li:before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #c77dff;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: rgba(255, 255, 255, 0.95);
+            border-left: 4px solid #9d4edd;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(74, 21, 75, 0.2);
+            color: #2c3e50;
+        }
+        
+        .testimonial h4 {
+            color: #7b2cbf;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.3em;
+        }
+        
+        .testimonial a {
+            color: #9d4edd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .testimonial a:hover {
+            color: #c77dff;
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #4a154b, #5b2c6f);
+            padding: 60px 0;
+            text-align: center;
+            color: #e0aaff;
+            border-top: 1px solid rgba(199, 125, 255, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #4a154b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #c77dff, #e0aaff);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #e0aaff, #ffffff);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>✦ ISIS 女神 ✦</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>啟動你專屬的財富DNA編碼<br>重新連結豐盛源頭</h2>
+            <p>透過超意識DNA心靈工程，精準解除限制性信念<br>植入財富正向印記，活出生命中最好的版本</p>
+            <a href="#pricing" class="cta-button">開始財富轉化</a>
+        </div>
+    </section>    <!-- Pain Points Section -->
+    <section class="section">
+        <div class="container">
+            <h3>深層財富意識覺醒</h3>
+            
+            <div class="pain-points">
+                <h4>你是否深陷東方集體意識的財富枷鎖？</h4>
+                <p><strong>你有「#被剝削成癮症」嗎？</strong></p>
+                <p>你有渴望財富但潛意識卻害怕成功/恐懼失敗的苦難勳章？</p>
+                <p>你有"我必須付出哪些代價"才配得到豐盛自由的限制性信念或匱乏意識嗎？</p>
+            </div>
+
+            <div style="text-align: center; margin: 60px 0; padding: 40px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 20px; backdrop-filter: blur(10px);">
+                <p style="font-size: 1.2em; margin-bottom: 30px;">只要是身為東方人（大中華子民），或多或少都有相關的症頭！</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 40px 0;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em; color: #e0aaff; margin-bottom: 10px;">20-35%</div>
+                        <p style="color: #c77dff;">東亞財富自由人口</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em; color: #e0aaff; margin-bottom: 10px;">DNA</div>
+                        <p style="color: #c77dff;">限制信念儲存位置</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em; color: #e0aaff; margin-bottom: 10px;">∞</div>
+                        <p style="color: #c77dff;">靈魂財富潛能</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin: 40px 0; text-align: center;"><strong style="color: #e0aaff;">#為何大多數的台灣人容易被詐騙？或是投資失利？創業失敗？生活中不斷出現的財務無底洞/想要一步登天結果導致了跌落谷底無法翻身！</strong></p>
+            
+            <p>別說台灣了，放眼整個東南亞及對岸同胞都有類似的課題，大概率只有20~35%的人數，要嘛福報深厚而成為富翁、要嘛人間清醒成為策略高人，自然跟詐騙或是財富損失之間形成能量防護罩而倖免於難！</p>
+            
+            <div style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(199, 125, 255, 0.1)); padding: 40px; border-radius: 20px; margin: 40px 0; border-left: 4px solid #c77dff; backdrop-filter: blur(10px);">
+                <h4 style="color: #e0aaff; margin-bottom: 20px; font-size: 1.6em;">深層根源分析</h4>
+                <p>據長年觀察，我們東方人集體意識中有許多傳統式教條及限制性信念，這些限制都復刻在我們的DNA編碼中...</p>
+                <p style="margin: 20px 0; color: #e0aaff;"><strong>例如：「輕鬆賺的錢不純潔」其實對應到「我要很努力才值得成功及獎賞！」於是養成"我付出所以我偉大"的隱形傲慢及自證模式！</strong></p>
+                <p style="color: #c77dff; font-weight: 500;">整個東方教育真的是妥妥的「奴性意識殖民」呀！</p>
+            </div>
+            
+            <p>男性意識在工作層面總有披掛「過勞勳章」而有不負此生的錯覺；而女性意識總在家庭及親密關係中隱形沾沾自喜自己的「犧牲獎盃」！</p>
+            
+            <p>直到精疲力竭、徒勞無功、換不到自己想要的之後，才會開始自我檢視：「到底哪裡出了問題」！？</p>
+            
+            <p style="margin: 30px 0;">加上我們還有對財富底層的"罪惡感"及"扭曲思想"創造了負面經驗，潛意識顯化出故意找不對的人來辜負自己，於是形成「信念創造實相，經驗鞏固信念」的負向閉環！</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h3>超意識覺醒轉化</h3>
+            
+            <div style="margin: 60px 0;">
+                <p style="font-size: 1.2em; text-align: center; margin-bottom: 40px;">雖然大部份的人都很善良，但底層因為沒有覺醒到自己就是豐盛源頭而被代代相傳的生存恐懼植入病毒，疊加的匱乏意識養出了"貪婪黑洞"，於是就容易被業力及習氣牽著走，做出許多無明的決定及行為，最後悔恨到自我放棄，大喊：「我真的不想努力了！」</p>
+                
+                <div style="text-align: center; padding: 50px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.15), rgba(199, 125, 255, 0.08)); border-radius: 25px; margin: 50px 0; backdrop-filter: blur(15px); border: 1px solid rgba(224, 170, 255, 0.3);">
+                    <h4 style="color: #e0aaff; font-size: 2.2em; margin-bottom: 25px;">✦ 覺醒的關鍵時刻 ✦</h4>
+                    <p style="font-size: 1.4em; color: #ffffff; margin-bottom: 25px;"><strong>太好了！正是這句"我不想努力了"成為集體意識覺醒的開端</strong></p>
+                    <p style="margin: 20px 0;">從中悟透了"原來努力是一場騙局"！</p>
+                    <p>但~在看破努力之後卻茫然了....<br>被權威教育帶大的我們，該要何去何從？！</p>
+                </div>
+                
+                <div style="text-align: center; padding: 50px; background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(199, 125, 255, 0.15)); border-radius: 25px; border: 2px solid #e0aaff; backdrop-filter: blur(15px);">
+                    <h4 style="color: #ffffff; font-size: 1.8em; margin-bottom: 30px;">🌟 靈魂連結的真相 🌟</h4>
+                    <p style="font-size: 1.3em; color: #f8f9fa; font-weight: 400; line-height: 1.8;"><strong>各位，外在的財富顯化不是重點，重點是恢復你/妳與靈魂的連結，當你/妳聽見靈魂的聲音，並願意與靈魂合一，你就能拿回靈魂所攜帶的"天賦"及"財富正向印記"，真正開啟屬於你的外掛系統，活出更加無限的生命版本！</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h3>靈魂轉化見證</h3>
+            <p style="text-align: center; font-size: 1.2em; color: #e0aaff; margin-bottom: 60px;">在舉辦「巳火夏至啟動財富DNA後」，透過兩位女神級靈性老師的自發性分享，忽然一天內陸續有四十幾位還在迷茫、或是想要精益求精的天使們私訊我想要參加活動，拿到屬於自己的「靈魂及財富報告」</p>
+            
+            <div class="testimonial">
+                <h4>✦ 高維星際女王-歐若拉老師的見證分享</h4>
+                <p>看過後會對自己的信念產生「我愛自己所以我要活出更高維真實版本的自己」之驚人啟發</p>
+                <a href="https://www.facebook.com/share/1B781L5rqp/?mibextid=wwXIfr" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>✦ 宇宙仙后-陳玫孜老師</h4>
+                <p>放下自我糾結，靈性物質兩不誤之見證分享</p>
+                <a href="https://www.facebook.com/share/r/19jJDFCVuM/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>✦ 星際光行天使及星際光能工程師</h4>
+                <p>香港學員夫婦的內在英雄之旅分享</p>
+                <a href="https://www.facebook.com/share/p/1EuZtLYPM1/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div class="testimonial">
+                <h4>✦ 銀河央行鳳凰財務長</h4>
+                <p>探尋自我，靈魂升級之財富報告分享</p>
+                <a href="https://www.facebook.com/share/1Avdhdu9Bo/" target="_blank">查看完整見證 →</a>
+            </div>
+            
+            <div style="text-align: center; margin: 50px 0;">
+                <a href="https://www.facebook.com/share/p/1LYXJyD3Pm/" target="_blank" style="color: #c77dff; text-decoration: none; font-weight: 500; font-size: 1.1em;">
+                    ✦ Isis愛老師發起此服務項目的初衷與願心 →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Content Section -->
+    <section class="section">
+        <div class="container">
+            <h3>超意識DNA轉化系統</h3>
+            
+            <div style="text-align: center; margin: 60px 0; padding: 50px; background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(199, 125, 255, 0.1)); border-radius: 25px; backdrop-filter: blur(15px); border: 1px solid rgba(224, 170, 255, 0.3);">
+                <h4 style="color: #e0aaff; font-size: 2.2em; margin-bottom: 25px;">一份「#迅猛更新 × #深度轉化」的神級靈魂財富報告</h4>
+                <p style="font-size: 1.3em; color: #ffffff; margin-bottom: 20px;">這不僅僅是一份報告，更是#解鎖你/妳豐盛源頭的關鍵密碼！</p>
+                <div style="width: 120px; height: 2px; background: linear-gradient(45deg, #c77dff, #e0aaff); margin: 30px auto; border-radius: 2px;"></div>
+                <p style="font-size: 1.2em; color: #e0aaff;">『個人的靈魂及財富DNA編碼報告』電子文字檔，內容精準揭示：</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>✦ 01. 靈魂藍圖解析</h4>
+                    <p>認識你/妳獨一無二的靈魂特質及定位分析：當下靈魂狀態、靈魂原型與光譜、靈魂之名（未必每個人都有，這顯示你是主體輪回，還是意識綜合體體驗）、靈魂頻率....等族繁不及備載之眼花撩亂項目~</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 02. 靈魂天賦啟動</h4>
+                    <p>靈魂的當下課題指引及靈魂天賦：發掘你與生俱來的財富天賦與優勢！明確知道此刻該跨越什麼，才能迎向豐盛！你此刻的能量位置為何財富受阻？</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 03. 星際DNA連結</h4>
+                    <p>對焦太陽系的星際DNA：讓你知道除了擁有地球母親的支持外，你還有星際母體的資源、法源、質能....供你使用及創造！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 04. 財富印記重編</h4>
+                    <p>財富印記大解密：找出深藏的「正向財富印記」來轉化成物質豐盛，及需要轉化的「毀滅性業力印記」來加以銷毀！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 05. 意識枷鎖解除</h4>
+                    <p>解密大腦的神經系統枷鎖：揪出"目前"那些潛意識裡阻礙你致富的限制性信念！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 06. 靈魂指導覺醒</h4>
+                    <p>你/妳的靈魂之溫情告白及指導靈恨鐵不成鋼的敲腦袋！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 07. 業力記憶清理</h4>
+                    <p>肉體繼承祖先的財富負面記憶：當我們擁抱這具身體所承載的「業力模式及集體意識」，就能在無限源頭的陪伴下重新編碼你的DNA！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 08. 拙火轉化啟動</h4>
+                    <p>光是從靈魂與財富報告了解自己有什麼用！頂多因為理解而釋懷一些心結~<br><br>
+                    我們真正的目標是要從「神經系統」移除「限制性信念」及「老舊的業力模式」！<br><br>
+                    #Isis會使出看家本領：［🔥 啟動拙火×障礙黑洞轉化術］帶領你/妳去焚燒財富的負面業力因子，得到迅猛轉化，只要你/妳願意按表操課，就能真正做到轉識成智、轉虧為盈、離苦得樂！</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>✦ 09. DNA編碼植入</h4>
+                    <p><strong>而最令人振奮的核心服務就是：</strong><br><br>
+                    ✨從無限源頭下載並生成【DNA財富編碼 · 松果體啟動儀式】✨<br><br>
+                    Isis 愛老師將親自引導，將這組專屬於你的豐盛「財富DNA編碼」精準直接輸入你的能量核心-松果體，執行開啟外掛程式！<br><br>
+                    <strong>只要照著你的財富報告的操練方式，按表操課21~100天</strong><br>
+                    你/妳將啟動豐盛通道：開啟靈魂深處的財富泉源，讓豐沛能量自然流動！<br>
+                    三個月後"有感"活出豐盛：這不是遙遠的承諾！啟動後，你將親身經歷內在豐盛感與外在財富流的顯著轉變！</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 80px 0; padding: 50px; background: linear-gradient(45deg, rgba(224, 170, 255, 0.15), rgba(199, 125, 255, 0.1)); border-radius: 25px; border: 2px solid #e0aaff; backdrop-filter: blur(15px);">
+                <h4 style="color: #e0aaff; font-size: 2em; margin-bottom: 25px;">✦ 超意識加碼贈送 ✦</h4>
+                <p style="font-size: 1.5em; color: #ffffff; margin-bottom: 15px;"><strong>21天松果體全面啟動計畫</strong></p>
+                <p style="color: #e0aaff;">（共八支錄播影片，陪伴靈性夥伴突破腦意識圍籬，覺知力及連結源頭能力大增）</p>
+                <p style="color: #c77dff; margin-top: 25px; font-style: italic;">*這是你靈魂等待已久的更新與轉機！</p>
+            </div>
+        </div>
+    </section>    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <h3>選擇你的覺醒之路</h3>
+            <p style="text-align: center; font-size: 1.2em; color: #e0aaff; margin-bottom: 60px;">Isis目前規劃三個方案，讓各位靈性夥伴根據自己的"財務狀況"來選擇最無壓力的服務項目（另包含一項隱藏性方案）</p>
+            
+            <div class="pricing-grid">
+                <!-- Plan 1 -->
+                <div class="pricing-card featured">
+                    <h4>💥『暴富方案一』</h4>
+                    <div class="price">NT$ 16,888<small>海外：568 USDT</small></div>
+                    
+                    <ul class="features-list">
+                        <li>獲得一份［靈魂及財富DNA報告電子文字檔］<br>
+                        <small style="color: #c77dff;">我光對焦你/妳的靈魂藍圖及解析個人信息，我個人要花至少30分鐘才能生成檔案</small></li>
+                        <li>［一對一帶領啟動拙火及量子按鈕］<br>
+                        <small style="color: #c77dff;">愛老師會一步步帶領你/妳啟動體內"拙火"能量（約莫20~25分鐘）</small></li>
+                        <li>［拙火焚燒業力模式］<br>
+                        <small style="color: #c77dff;">拙火焚燒神經系統中的五大業力模式（約莫15分鐘）</small></li>
+                        <li>［一對一喚醒你靈魂所攜帶的十個正向印記及靈魂天賦］<br>
+                        <small style="color: #c77dff;">（約莫10~15分鐘）</small></li>
+                        <li>［一對一帶領你/妳輸入專屬的財富DNA編碼置入松果體開啟外掛程式］<br>
+                        <small style="color: #c77dff;">（約莫5分鐘）</small></li>
+                        <li>加碼贈送：21天松果體全面啟動（共八支錄播影片影片，陪伴靈性夥伴突破腦意識圍籬，覺知力及連結源頭能力大增）</li>
+                        <li>個案過程中使用line視訊，歡迎錄音錄影</li>
+                    </ul>
+                    
+                    <div style="margin: 25px 0; padding: 20px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px;">
+                        <p style="font-size: 0.9em; color: #c77dff; text-decoration: line-through; margin-bottom: 8px;">原本打算收費23888</p>
+                        <p style="font-size: 1.2em; color: #e0aaff; font-weight: 600;">佛心價：16888</p>
+                    </div>
+                    
+                    <a href="#contact" class="cta-button">立即啟動</a>
+                </div>
+                
+                <!-- Plan 2 -->
+                <div class="pricing-card">
+                    <h4>💸『集體揚升方案二』</h4>
+                    <div class="price">NT$ 5,888<small>海外：198 USDT</small></div>
+                    
+                    <ul class="features-list">
+                        <li>"方案一"的一切全都包含，不過是採取「集體轉換的方式」</li>
+                        <li>匯完款後的一週內會獲得專屬於你/妳的「靈魂與財富DNA報告」</li>
+                        <li>加碼贈送：21天松果體全面啟動（共八支錄播影片影片，陪伴靈性夥伴突破腦意識圍籬，覺知力及連結源頭能力大增）</li>
+                        <li>Isis會提前列表出當月份或下月份的「新月」、「滿月」及「特殊節氣」、「天赦日」等時間，你/妳可以根據自己的空檔自由選擇參加活動，不過要祈禱，因為滿十人才會開課~</li>
+                        <li>團體轉化活動所需時間：120分鐘，通常辦在晚上pm 19：19~21：21<br>
+                        <small style="color: #c77dff;">（註：新月滿月節氣天赦日等日子都是具有不可思議的轉化力量）</small></li>
+                        <li>使用Google Meet 線上團練，有錄影及錄音檔可以讓參與者回到生活中自行操練</li>
+                    </ul>
+                    
+                    <div style="margin: 25px 0; padding: 20px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px;">
+                        <p style="font-size: 0.9em; color: #c77dff; text-decoration: line-through; margin-bottom: 8px;">原本收費8888</p>
+                        <p style="font-size: 1.2em; color: #e0aaff; font-weight: 600;">特惠：5888</p>
+                    </div>
+                    
+                    <a href="#contact" class="cta-button">立即啟動</a>
+                </div>
+                
+                <!-- Plan 3 -->
+                <div class="pricing-card">
+                    <h4>💎『孤芳自修方案三』</h4>
+                    <div class="price">NT$ 3,333<small>海外：111 USDT</small></div>
+                    
+                    <ul class="features-list">
+                        <li>獲得一份［靈魂及財富DNA報告電子文字檔］<br>
+                        <small style="color: #c77dff;">我光對焦你/妳的靈魂藍圖及解析個人信息，我個人要花至少30分鐘才能生成檔案</small></li>
+                        <li>收到匯款後一週內會獲得專屬於你/妳的「靈魂與財富DNA報告」</li>
+                        <li>加碼贈送：21天松果體全面啟動（共八支錄播影片影片，陪伴靈性夥伴突破腦意識圍籬，覺知力及連結源頭能力大增）</li>
+                        <li>適合只想了解自己、擁抱課題的靈性夥伴</li>
+                        <li>歡迎已經有屬於自己一套修行法門的夥伴們參與，你/妳的修行底蘊可以配合專屬報告去自行進行業力習氣清理，獲得隨緣自在~</li>
+                        <li>有自己專修法門的夥伴，加上松果體全面開發，會讓你原本法門增上益，完全不用擔心不相容（需要可以跟我說一聲，馬上附上影片連結）</li>
+                    </ul>
+                    
+                    <div style="margin: 25px 0; padding: 20px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px;">
+                        <p style="font-size: 1em; color: #c77dff; font-style: italic;">（拜託大家選此方案讓我輕鬆豐盛XD）</p>
+                    </div>
+                    
+                    <a href="#contact" class="cta-button">立即啟動</a>
+                </div>
+            </div>
+            
+            <!-- Hidden Plan 4 -->
+            <div style="margin-top: 80px; text-align: center;">
+                <details style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(199, 125, 255, 0.08)); padding: 40px; border-radius: 20px; border: 2px solid rgba(224, 170, 255, 0.3); backdrop-filter: blur(15px); box-shadow: 0 15px 40px rgba(74, 21, 75, 0.2);">
+                    <summary style="font-size: 1.8em; color: #e0aaff; cursor: pointer; margin-bottom: 30px; font-weight: 500;">✦『隱藏版方案四』- 靈魂互助計畫 ✦</summary>
+                    <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                        <p style="color: #f8f9fa; margin-bottom: 30px; font-size: 1.1em;">我是個需要被照顧日常生活的整理白癡，需要喜歡會照顧人/愛乾淨/熱愛水晶及大自然/不怕繁雜的生活助理</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
+                            <div style="padding: 25px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px; border-left: 4px solid #c77dff;">
+                                <h5 style="color: #e0aaff; margin-bottom: 12px; font-size: 1.2em;">🏠 室內照護工作</h5>
+                                <p style="color: #c77dff; font-weight: 600; font-size: 1.1em;">時薪：222</p>
+                            </div>
+                            <div style="padding: 25px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px; border-left: 4px solid #c77dff;">
+                                <h5 style="color: #e0aaff; margin-bottom: 12px; font-size: 1.2em;">🌿 戶外庭園工作</h5>
+                                <p style="color: #c77dff; font-weight: 600; font-size: 1.1em;">時薪：258~333</p>
+                            </div>
+                            <div style="padding: 25px; background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.05)); border-radius: 12px; border-left: 4px solid #c77dff;">
+                                <h5 style="color: #e0aaff; margin-bottom: 12px; font-size: 1.2em;">📝 文書行政/剪輯影片</h5>
+                                <p style="color: #c77dff; font-weight: 600; font-size: 1.1em;">時薪：222/333/444/555</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #f8f9fa; margin: 20px 0;">（時薪需要根據個人能力、狀況面談）</p>
+                        <p style="color: #f8f9fa; margin: 20px 0;">目前剛開始出山無法提供勞健保，需要的工作時長約一週二次，一次3~4小時</p>
+                        
+                        <div style="background: linear-gradient(135ds, rgba(224, 170, 255, 0.2), rgba(199, 125, 255, 0.1)); padding: 30px; border-radius: 15px; margin: 30px 0; border: 2px solid #e0aaff;">
+                            <p style="color: #ffffff; font-weight: 600; margin-bottom: 15px; font-size: 1.1em;"><strong>#可用工作時數來抵扣報名方案費用，讓有能力但目前沒有預算的夥伴可以與我互相扶持</strong></p>
+                            <p style="color: #ffffff; font-weight: 600; font-size: 1.1em;"><strong>#另外還會有視狀況而浮現的隨喜福利</strong></p>
+                        </div>
+                        
+                        <p style="color: #e0aaff; text-align: center; font-size: 1.3em; margin-top: 30px;">歡迎有愛的妳來照顧忙到沒時間整理家務及行政庶務的Isis~ ✦</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section" id="contact">
+        <div class="container" style="text-align: center;">
+            <h3>開啟你的超意識覺醒之旅</h3>
+            <p style="font-size: 1.4em; margin: 40px 0; color: #e0aaff;">$$$立即報名，領取你/妳的財富DNA報告，預約這場改變命運的量子跳躍啟動！</p>
+            
+            <div style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(199, 125, 255, 0.1)); padding: 50px; border-radius: 25px; margin: 60px 0; backdrop-filter: blur(15px); border: 2px solid rgba(224, 170, 255, 0.3);">
+                <h4 style="color: #e0aaff; margin-bottom: 30px; font-size: 1.8em;">✦ 報名方式 ✦</h4>
+                <p style="font-size: 1.2em; margin-bottom: 25px; color: #ffffff;"><strong>*在報名表尚未出爐前，歡迎直接私訊 Isis Shivaya 報名，直接留言要報名方案一/方案二/方案三 即可</strong></p>
+                <p style="color: #e0aaff; margin: 15px 0;">Isis及助理正在規劃報名表單及安排時間</p>
+                <p style="color: #e0aaff;">請大家多給點耐心與支持~</p>
+            </div>
+            
+            <a href="#" class="cta-button" style="font-size: 1.6em; padding: 25px 60px; margin: 30px 0;">✦ 立即私訊報名 ✦</a>
+            
+            <div style="margin-top: 80px; padding: 50px; background: linear-gradient(135deg, rgba(74, 21, 75, 0.3), rgba(91, 44, 111, 0.2)); border-radius: 25px; backdrop-filter: blur(15px);">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <p style="color: #e0aaff; font-size: 1.5em; margin-bottom: 30px; font-weight: 500;">✦ 感恩無限 ✦</p>
+                    <p style="color: #e0aaff; font-size: 1.5em; margin-bottom: 40px; font-weight: 500;">感恩大家願意一起跨維度揚升</p>
+                    
+                    <div style="margin: 40px 0; font-size: 1.2em; color: #f8f9fa; line-height: 2;">
+                        <p style="margin: 20px 0;">#從此地球不再是星際監獄</p>
+                        <p style="margin: 20px 0;">#地球直接揚升成享受創新創富創樂的靈魂樂園</p>
+                        <p style="margin: 30px 0; font-size: 1.4em; font-weight: 600; color: #e0aaff;"><strong>#Isis 合十禮敬每一位勇敢的靈魂</strong></p>
+                        <p style="margin: 20px 0; font-style: italic; color: #c77dff;">#附上見證截圖讓大家更有信心</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 1.2em; margin-bottom: 15px;">&copy; 2025 Isis女神 超意識DNA財富啟動系統</p>
+            <p style="color: rgba(224, 170, 255, 0.8); font-size: 1em;">活出你生命中最好的版本 ✦ 讓你的心，觸動更多的心</p>
+            <div style="margin-top: 30px; font-size: 0.9em; color: rgba(199, 125, 255, 0.6);">
+                <p>超意識DNA心靈工程 | 靈魂覺醒轉化 | 財富意識重編程</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced particle animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 8 + 4) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            document.querySelector('.hero').appendChild(particle);
+            
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 8000);
+        }
+
+        // Create new particles periodically
+        setInterval(createParticle, 3000);
+        
+        // Parallax effect for particles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.1;
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .pricing-card, .testimonial, .pain-points').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+        
+        // Enhanced hover effects with sound-like ripple
+        document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add mystical glow effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            const header = document.querySelector('.header');
+            const glowIntensity = Math.sin(scrollPercentage * Math.PI * 4) * 0.3 + 0.7;
+            header.style.boxShadow = `0 0 ${glowIntensity * 30}px rgba(199, 125, 255, ${glowIntensity * 0.5})`;
+        });
+    </script>
+</body>
+</html>
