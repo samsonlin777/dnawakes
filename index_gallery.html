@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis女神財富DNA啟動 - 四種設計風格預覽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .style-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+        
+        .style-preview {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .style-preview:hover {
+            border-color: #667eea;
+            transform: scale(1.02);
+        }
+        
+        .mystical .style-preview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .mystical .style-preview:after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+            animation: rotate 3s ease-in-out infinite;
+        }
+        
+        .warm .style-preview {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe4e1 30%, #ffeaa7 100%);
+        }
+        
+        .warm .style-preview:after {
+            content: '💖';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .modern-purple .style-preview {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+            border: 2px solid rgba(157, 78, 221, 0.2);
+        }
+        
+        .modern-purple .style-preview:after {
+            content: '◇';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #9d4edd;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        
+        .galactic .style-preview {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0d2e 50%, #2d1b3d 100%);
+            position: relative;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            overflow: hidden;
+        }
+        
+        .galactic .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 50%);
+        }
+        
+        .galactic .style-preview:after {
+            content: '◊';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #ba55d3;
+            text-shadow: 0 0 20px rgba(186, 85, 211, 0.8);
+            animation: quantum 3s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        @keyframes quantum {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                text-shadow: 0 0 20px rgba(186, 85, 211, 0.8);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                text-shadow: 0 0 40px rgba(186, 85, 211, 1), 0 0 60px rgba(138, 43, 226, 0.8);
+            }
+        }
+        
+        /* Galactic Light Style */
+        .galactic-light .style-preview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 50%, #dae8ff 100%);
+            position: relative;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            overflow: hidden;
+        }
+        
+        .galactic-light .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(75, 0, 130, 0.05) 0%, transparent 50%);
+        }
+        
+        .galactic-light .style-preview:after {
+            content: '◊';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #8a2be2;
+            animation: gentle-glow 4s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        @keyframes gentle-glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
+            }
+        }
+        
+        /* ISIS Divine Style */
+        .isis-divine .style-preview {
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            border: 2px solid rgba(218, 165, 32, 0.5);
+            overflow: hidden;
+        }
+        
+        .isis-divine .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(70, 130, 180, 0.1) 0%, transparent 50%);
+        }
+        
+        .isis-divine .style-preview:after {
+            content: '☥';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #daa520;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+            animation: divine-pulse 5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        @keyframes divine-pulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 0 15px rgba(218, 165, 32, 0.6));
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1);
+                filter: drop-shadow(0 0 30px rgba(218, 165, 32, 0.9));
+            }
+        }
+        
+        /* ISIS Purple Style */
+        .isis-purple .style-preview {
+            background: linear-gradient(135deg, #2d1b69 0%, #4b0082 30%, #663399 60%, #301934 100%);
+            position: relative;
+            border: 2px solid rgba(218, 165, 32, 0.5);
+            overflow: hidden;
+        }
+        
+        .isis-purple .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(147, 112, 219, 0.2) 0%, transparent 50%);
+        }
+        
+        .isis-purple .style-preview:after {
+            content: '☥';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #daa520;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+            animation: divine-pulse 5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* ISIS Star Blue Style */
+        .isis-starblue .style-preview {
+            background: linear-gradient(135deg, #0f1a35 0%, #1e3a5f 30%, #2c5aa0 60%, #1a237e 100%);
+            position: relative;
+            border: 2px solid rgba(218, 165, 32, 0.5);
+            overflow: hidden;
+        }
+        
+        .isis-starblue .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(100, 149, 237, 0.2) 0%, transparent 50%);
+        }
+        
+        .isis-starblue .style-preview:after {
+            content: '☥';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #daa520;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+            animation: divine-pulse 5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* ISIS Emerald Style */
+        .isis-emerald .style-preview {
+            background: linear-gradient(135deg, #1a4332 0%, #2e7d32 30%, #388e3c 60%, #1b5e20 100%);
+            position: relative;
+            border: 2px solid rgba(218, 165, 32, 0.5);
+            overflow: hidden;
+        }
+        
+        .isis-emerald .style-preview:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(46, 125, 50, 0.2) 0%, transparent 50%);
+        }
+        
+        .isis-emerald .style-preview:after {
+            content: '☥';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #daa520;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+            animation: divine-pulse 5s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        .style-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .style-card p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .view-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+        
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102,126,234,0.3);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .features li {
+            margin: 8px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        @keyframes rotate {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(224, 170, 255, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(224, 170, 255, 1); }
+        }
+        
+        .note {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .styles-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Isis女神 財富DNA啟動</h1>
+        <p class="subtitle">四種設計風格預覽 - 選擇最能觸動你心靈的版本</p>
+        
+        <div class="styles-grid">
+            <!-- Style 2: Warm -->
+            <div class="style-card warm">
+                <div class="style-preview"></div>
+                <h3>溫暖療癒風格</h3>
+                <p>粉色暖調配色，愛心療癒元素，呈現溫暖包容的母性能量。適合渴望愛與療癒的溫柔靈魂。</p>
+                <div class="features">
+                    <ul>
+                        <li>💖 粉色溫暖漸變</li>
+                        <li>💖 愛心療癒符號</li>
+                        <li>💖 脈動動畫效果</li>
+                        <li>💖 療癒主題設計</li>
+                    </ul>
+                </div>
+                <a href="style2_warm.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 4: Spiritual -->
+            <div class="style-card spiritual">
+                <div class="style-preview"></div>
+                <h3>靈性紫調風格</h3>
+                <p>紫色靈性配色，超意識元素，體現高維頻率與意識擴展。最貼近Isis老師原網站的靈性氛圍，文案區塊改為白色提升閱讀體驗。</p>
+                <div class="features">
+                    <ul>
+                        <li>✦ 紫色靈性漸變</li>
+                        <li>✦ 白色文案區塊</li>
+                        <li>✦ 發光動畫效果</li>
+                        <li>✦ 高維主題設計</li>
+                    </ul>
+                </div>
+                <a href="style4_spiritual.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 5: Modern Purple -->
+            <div class="style-card modern-purple">
+                <div class="style-preview"></div>
+                <h3>紫調簡約風格</h3>
+                <p>結合現代簡約設計與紫色靈性色調，白色乾淨背景搭配紫色點綴。適合喜歡簡潔專業但又具有靈性質感的理性靈魂。</p>
+                <div class="features">
+                    <ul>
+                        <li>◆ 白色簡約背景</li>
+                        <li>◆ 紫色靈性點綴</li>
+                        <li>◆ 幾何動畫效果</li>
+                        <li>◆ 現代靈性設計</li>
+                    </ul>
+                </div>
+                <a href="style5_modern_purple.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 6: Galactic -->
+            <div class="style-card galactic">
+                <div class="style-preview"></div>
+                <h3>星際科技風格</h3>
+                <p>紫色調星際科技感，結合未來感字體和動畫效果。營造銀河系高科技文明的氛圍，適合追求前衛與科技感的靈魂探索者。</p>
+                <div class="features">
+                    <ul>
+                        <li>◊ 星際科技背景</li>
+                        <li>◊ 量子動畫效果</li>
+                        <li>◊ 全息投影風格</li>
+                        <li>◊ 銀河文明設計</li>
+                    </ul>
+                </div>
+                <a href="style6_galactic.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 7: Galactic Light -->
+            <div class="style-card galactic-light">
+                <div class="style-preview"></div>
+                <h3>星際科技淺色風格</h3>
+                <p>星際科技淺色版本，以淺藍和紫色調為主，保持科技感的同時更加明亮清新。適合喜愛未來感但偏好明亮色調的用戶。</p>
+                <div class="features">
+                    <ul>
+                        <li>◊ 淺色科技背景</li>
+                        <li>◊ 溫和量子效果</li>
+                        <li>◊ 光明星際風格</li>
+                        <li>◊ 清新未來設計</li>
+                    </ul>
+                </div>
+                <a href="style7_galactic_light.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 8: ISIS Divine -->
+            <div class="style-card isis-divine">
+                <div class="style-preview"></div>
+                <h3>ISIS女神神聖風格</h3>
+                <p>古埃及神聖美學，金色與藍色調的完美融合，充滿神殿莊嚴感與女神神性。ISIS符號和聖幾何圖案，展現古老智慧的神聖力量。</p>
+                <div class="features">
+                    <ul>
+                        <li>☥ 古埃及神聖美學</li>
+                        <li>𓂀 女神神性光芒</li>
+                        <li>𓊪 聖幾何能量場</li>
+                        <li>𓊽 神殿莊嚴氛圍</li>
+                    </ul>
+                </div>
+                <a href="style8_isis_divine.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 9: ISIS Purple -->
+            <div class="style-card isis-purple">
+                <div class="style-preview"></div>
+                <h3>ISIS女神紫色漸層風格</h3>
+                <p>保留金色神秘感，但以紫色漸層為主調的埃及女神風格。紫色象徵神秘與靈性，結合古埃及元素營造神聖氛圍。</p>
+                <div class="features">
+                    <ul>
+                        <li>☥ 紫色神聖漸層</li>
+                        <li>𓂀 金色女神光芒</li>
+                        <li>𓊪 神秘紫色能量</li>
+                        <li>𓊽 古埃及靈性美學</li>
+                    </ul>
+                </div>
+                <a href="style9_isis_purple.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 10: ISIS Star Blue -->
+            <div class="style-card isis-starblue">
+                <div class="style-preview"></div>
+                <h3>ISIS女神深藍星空風格</h3>
+                <p>深藍星空配色的埃及女神風格，保持金色神秘感，營造夜空與星辰的神聖氛圍。適合喜愛星空與宇宙能量的靈魂。</p>
+                <div class="features">
+                    <ul>
+                        <li>☥ 深藍星空背景</li>
+                        <li>𓂀 星際女神能量</li>
+                        <li>𓊪 宇宙神聖光芒</li>
+                        <li>𓊽 夜空古埃及美學</li>
+                    </ul>
+                </div>
+                <a href="style10_isis_starblue.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+            
+            <!-- Style 11: ISIS Emerald -->
+            <div class="style-card isis-emerald">
+                <div class="style-preview"></div>
+                <h3>ISIS女神翡翠森林風格</h3>
+                <p>翡翠綠與深綠色調的埃及女神風格，保留金色神聖元素，融合森林與自然神秘能量。適合追求自然智慧的神聖血脈。</p>
+                <div class="features">
+                    <ul>
+                        <li>☥ 翡翠森林背景</li>
+                        <li>𓂀 自然女神智慧</li>
+                        <li>𓊪 森林神秘能量</li>
+                        <li>𓊽 大地古埃及美學</li>
+                    </ul>
+                </div>
+                <a href="style11_isis_emerald.html" class="view-button" target="_blank">查看完整版</a>
+            </div>
+        </div>
+        
+        <div class="note">
+            <h3 style="margin-bottom: 15px; color: white;">📝 設計說明</h3>
+            <p>每個版本都包含完整的Isis老師原始文案內容，只是視覺風格不同。請選擇最能代表你品牌氣質的設計風格。</p>
+            <p style="margin-top: 10px;">所有版本都支援手機瀏覽，並包含完整的服務內容、價格方案和見證分享。現在總共有11個版本：</p>
+            <ul style="margin: 15px 0; padding-left: 20px; color: white;">
+                <li><strong>第2版 溫暖療癒風格</strong> - 適合渴望愛與療癒的溫柔靈魂</li>
+                <li><strong>第4版 靈性紫調風格</strong> - 最接近原網站調性，經典靈性風格</li>
+                <li><strong>第5版 現代靈性風格</strong> - 現代簡約與靈性元素的完美結合</li>
+                <li><strong>第6版 星際科技風格</strong> - 最具未來感，銀河高科技文明風格</li>
+                <li><strong>第7版 星際淺色風格</strong> - 保持科技感但更加明亮清新</li>
+                <li><strong>第8版 ISIS女神神聖風格</strong> - 古埃及神聖美學，深色神秘調性</li>
+                <li><strong>第9版 ISIS女神紫色漸層風格</strong> - 紫色神聖漸層，保留金色神秘感</li>
+                <li><strong>第10版 ISIS女神深藍星空風格</strong> - 深藍星空配色，宇宙神聖氛圍</li>
+                <li><strong>第11版 ISIS女神翡翠森林風格</strong> - 翡翠綠色調，自然神秘能量</li>
+            </ul>
+            <p style="margin-top: 15px; color: #daa520; font-weight: 500;">✨ 特別推薦：第8-11版為ISIS女神專屬系列，都保留金色銀河神秘感，但有不同的底色調性可供選擇！</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = 'rgba(255,255,255,0.8)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.animation = 'sparkle 2s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 2000);
+        }
+        
+        // Add sparkle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create sparkles periodically
+        setInterval(createSparkle, 500);
+        
+        // Add hover effects to cards
+        document.querySelectorAll('.style-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
