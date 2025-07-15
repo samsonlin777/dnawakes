@@ -529,9 +529,29 @@
                             max-width: 700px;
                             margin: 0 auto;
                             background: white;
-                            padding: 40px;
+                            padding: 0;
                             border-radius: 15px;
                             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                        }
+                        .page {
+                            background: white;
+                            padding: 40px;
+                            margin-bottom: 20px;
+                            min-height: 800px;
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                            border-radius: 8px;
+                            page-break-after: always;
+                        }
+                        .page:last-child {
+                            margin-bottom: 0;
+                        }
+                        .page-number {
+                            text-align: center;
+                            color: #999;
+                            font-size: 0.9em;
+                            padding: 10px;
+                            border-top: 1px solid #eee;
+                            margin-top: 20px;
                         }
                         h1 { 
                             color: #4A148C; 
@@ -579,14 +599,20 @@
                 </head>
                 <body>
                     <div class="container">
-                        <h1>✨ Isis DNA覺醒報告 ✨</h1>
-                        <div class="student-info">
-                            <strong>學員：</strong>${currentStudent.name}<br>
-                            <strong>方案：</strong>${currentStudent.plan}<br>
-                            <strong>預覽日期：</strong>${new Date().toLocaleDateString('zh-TW')}
+                        <div class="page">
+                            <h1>✨ Isis DNA覺醒報告 ✨</h1>
+                            <div class="student-info">
+                                <strong>學員：</strong>${currentStudent.name}<br>
+                                <strong>方案：</strong>${currentStudent.plan}<br>
+                                <strong>預覽日期：</strong>${new Date().toLocaleDateString('zh-TW')}
+                            </div>
+                            <div class="page-number">第 1 頁</div>
                         </div>
-                        <div class="divider"></div>
-                        ${formattedContent}
+                        <div class="page">
+                            <div class="divider"></div>
+                            ${formattedContent}
+                            <div class="page-number">第 2 頁</div>
+                        </div>
                     </div>
                 </body>
                 </html>
