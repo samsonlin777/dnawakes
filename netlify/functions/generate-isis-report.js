@@ -66,8 +66,9 @@ exports.handler = async (event, context) => {
             // 繼續執行，不因為 webhook 失敗而中斷
         }
 
-        // 更新報告狀態為已發送
-        await updateReportStatus(student.orderNumber, 'sent');
+        // 更新報告狀態為已發送 (暫時停用，避免 RPC 錯誤)
+        // await updateReportStatus(student.orderNumber, 'sent');
+        console.log('📝 Report status update skipped for debugging');
 
         // 記錄到資料庫 (可選)
         await logReportGeneration(student, reportContent);
@@ -226,6 +227,8 @@ async function triggerN8nWebhook(data) {
     const webhookUrl = process.env.N8N_WEBHOOK_URL || 'https://n8n-samson-lin-u44764.vm.elestio.app/webhook/send-report-email';
     
     console.log('📧 Triggering n8n webhook for email sending');
+    console.log('🔗 Webhook URL:', webhookUrl);
+    console.log('📦 Payload keys:', Object.keys(data));
     
     try {
         const response = await fetch(webhookUrl, {
@@ -236,8 +239,13 @@ async function triggerN8nWebhook(data) {
             body: JSON.stringify(data)
         });
 
+        console.log('📊 Response status:', response.status);
+        console.log('📊 Response headers:', Object.fromEntries(response.headers));
+
         if (!response.ok) {
-            throw new Error(`n8n webhook failed: ${response.status}`);
+            const responseText = await response.text();
+            console.log('❌ Response body:', responseText);
+            throw new Error(`n8n webhook failed: ${response.status} - ${responseText}`);
         }
 
         const result = await response.json();
