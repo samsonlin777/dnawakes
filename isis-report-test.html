@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis PDF 報告系統 - 測試頁面</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .test-title {
+            color: #FFD700;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #FFD700, #FFA000);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+        
+        .success {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+        
+        .error {
+            border-color: #f44336;
+            background: rgba(244, 67, 54, 0.2);
+        }
+        
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .info-label {
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Isis PDF 報告系統測試</h1>
+        
+        <div class="test-section">
+            <div class="test-title">📋 測試學員資料</div>
+            <div class="student-info">
+                <div class="info-item">
+                    <div class="info-label">姓名</div>
+                    <div id="testStudentName">測試用戶-小美</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div id="testStudentEmail">test@example.com</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">方案</div>
+                    <div id="testStudentPlan">暴富方案一</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">生日</div>
+                    <div id="testStudentBirth">1990-05-15</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">密碼</div>
+                    <div id="testStudentPassword">19900515</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">訂單號</div>
+                    <div id="testOrderNumber">DNA1730982456999</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📝 測試報告內容</div>
+            <textarea id="testReportContent" placeholder="輸入測試報告內容...">========================
+🌟 靈魂特質分析
+========================
+親愛的測試用戶-小美，歡迎來到您專屬的DNA財富覺醒之旅！
+
+根據宇宙能量場的深度掃描，您的靈魂散發著獨特的光芒。您是一個天生的創造者，擁有將夢想化為現實的強大能力。您的靈魂頻率與豐盛能量場高度共振，這表示您天生就具備吸引財富的磁場。
+
+您的靈魂原型屬於「豐盛創造者」類型，這意味著您不僅能夠為自己創造豐盛，更能夠幫助他人開啟財富之門。
+
+========================
+🎯 當下課題指引
+========================
+目前您的靈魂正在經歷一個重要的轉化期。宇宙正邀請您放下對金錢的舊有恐懼，擁抱更高維度的豐盛意識。
+
+您當前的主要課題是：
+1. 釋放祖先傳承的匱乏意識
+2. 重新定義成功與財富的關係
+3. 學會接受宇宙的無條件給予
+
+這個階段請您專注於內在豐盛感的培養，外在的財富流動將自然跟隨。
+
+========================
+⭐ 星際DNA
+========================
+您的星際DNA顯示您來自昴宿星團的豐盛文明。昴宿星人以其高度的創造力和豐盛意識聞名於銀河系。
+
+您攜帶著以下星際天賦：
+- 直覺式財富創造能力
+- 能量療癒與轉化才能
+- 跨維度智慧連接
+- 集體豐盛意識啟動
+
+您的星際母體正在透過各種同步性事件向您發送豐盛訊號，請保持敏銳的覺察力。
+
+========================
+💎 財富印記解密
+========================
+正向財富印記：
+✨ 創造豐盛的天賦基因
+✨ 吸引貴人相助的磁場
+✨ 直覺投資決策能力
+✨ 金錢能量的淨化力量
+
+需要轉化的限制性印記：
+❌ "我不配擁有大量財富"
+❌ "金錢會改變人的本性"
+❌ "富有的人都是自私的"
+❌ "我必須努力工作才能賺錢"
+
+透過接下來的拙火轉化儀式，這些限制性印記將被徹底清除並重新編碼。
+
+========================
+🧠 神經系統枷鎖
+========================
+您的大腦神經網絡中存在以下限制性信念模式：
+
+1. 完美主義陷阱：認為必須做到完美才能獲得獎賞
+2. 控制慾望：害怕失去控制而拒絕流動
+3. 比較心理：總是與他人比較而忽略自身價值
+4. 延遲享受：認為現在不能享受必須等到未來
+
+這些模式源自於您的原生家庭教育和社會制約。透過拙火能量的啟動，這些神經路徑將被重新連接。
+
+========================
+💕 靈魂告白
+========================
+來自您靈魂的訊息：
+
+"親愛的，我等待這一刻已經很久了。我看見你內心深處對豐盛的渴望，也感受到你對金錢的複雜情感。現在是時候放下這些包袱，回歸到你真正的本質 - 一個無限豐盛的存在。
+
+你不需要證明自己的價值，因為你的存在本身就是宇宙的恩典。財富是你的天生權利，不是你需要努力爭取的東西。當你真正理解這一點時，豐盛將如瀑布般湧入你的生命。"
+
+您的指導靈補充：
+"停止小看自己的能力！你擁有的創造力遠超過你的想像。現在就開始行動，不要再等待所謂的'完美時機'。宇宙已經準備好支持你的每一個豐盛夢想。"
+
+========================
+🧬 祖先記憶
+========================
+您的家族DNA中攜帶著以下財富記憶：
+
+正向遺產：
+🌟 經商智慧基因
+🌟 勤儉持家的美德
+🌟 照顧家人的責任感
+🌟 誠信正直的品格
+
+需要清理的祖先模式：
+⚠️ 對富人的仇視心理
+⚠️ "金錢是萬惡之源"的信念
+⚠️ 過度節儉導致的匱乏意識
+⚠️ 女性不應該談錢的舊觀念
+
+通過拙火的淨化，您將保留祖先的智慧精華，同時釋放限制性的舊模式。
+
+========================
+🔥 轉化指引
+========================
+接下來21天的轉化練習：
+
+第1-7天：拙火啟動期
+- 每日冥想15分鐘，觀想金色光芒從脊椎底部上升
+- 重複肯定語：「我是豐盛的，我值得擁有財富」
+- 記錄夢境和同步性事件
+
+第8-14天：業力清理期  
+- 練習原諒與釋放冥想
+- 寫下並燒毀限制性信念清單
+- 每日感恩三件與豐盛相關的事情
+
+第15-21天：重新編碼期
+- 視覺化理想財富生活場景
+- 採取至少一個增加收入的具體行動
+- 慶祝每一個豐盛的顯化，無論大小
+
+記住，轉化是一個過程，請對自己有耐心。您的新財富DNA正在逐步啟動中！</textarea>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🧪 功能測試</div>
+            <button onclick="testPDFGeneration()" id="testBtn">🚀 測試 PDF 生成</button>
+            <button onclick="testN8nWebhook()" id="webhookBtn">📧 測試 n8n Webhook</button>
+            <button onclick="loadSampleData()">📝 載入範例內容</button>
+            
+            <div id="testResult" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📊 系統狀態</div>
+            <div id="systemStatus">
+                <p>✅ 前端介面：正常</p>
+                <p id="backendStatus">⏳ 後端 API：檢測中...</p>
+                <p id="webhookStatus">⏳ n8n Webhook：檢測中...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 測試 PDF 生成功能
+        async function testPDFGeneration() {
+            const btn = document.getElementById('testBtn');
+            const result = document.getElementById('testResult');
+            
+            btn.disabled = true;
+            btn.textContent = '生成中...';
+            result.style.display = 'block';
+            result.className = 'result';
+            result.innerHTML = '⏳ 正在生成 PDF 報告...';
+            
+            const testData = {
+                student: {
+                    id: 999,
+                    orderNumber: document.getElementById('testOrderNumber').textContent,
+                    name: document.getElementById('testStudentName').textContent,
+                    email: document.getElementById('testStudentEmail').textContent,
+                    plan: document.getElementById('testStudentPlan').textContent,
+                    birthDate: document.getElementById('testStudentBirth').textContent
+                },
+                reportContent: document.getElementById('testReportContent').value,
+                password: document.getElementById('testStudentPassword').textContent
+            };
+            
+            try {
+                const response = await fetch('/.netlify/functions/generate-isis-report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <h4>✅ 測試成功！</h4>
+                        <p><strong>訂單號：</strong>${data.orderNumber}</p>
+                        <p><strong>狀態：</strong>${data.message}</p>
+                        <p><strong>時間：</strong>${new Date().toLocaleString('zh-TW')}</p>
+                    `;
+                } else {
+                    throw new Error(data.error || 'Unknown error');
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `
+                    <h4>❌ 測試失敗</h4>
+                    <p><strong>錯誤：</strong>${error.message}</p>
+                    <p><strong>建議：</strong>檢查 Netlify Functions 是否正常運行</p>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🚀 測試 PDF 生成';
+            }
+        }
+        
+        // 測試 n8n Webhook
+        async function testN8nWebhook() {
+            const btn = document.getElementById('webhookBtn');
+            const result = document.getElementById('testResult');
+            
+            btn.disabled = true;
+            btn.textContent = '測試中...';
+            result.style.display = 'block';
+            result.className = 'result';
+            result.innerHTML = '⏳ 正在測試 n8n Webhook...';
+            
+            const testData = {
+                orderNumber: 'TEST-' + Date.now(),
+                studentName: '測試用戶',
+                studentEmail: 'test@example.com',
+                planType: '測試方案',
+                pdfBase64: 'dGVzdCBwZGY=', // "test pdf" in base64
+                password: '19900515',
+                reportDate: new Date().toISOString()
+            };
+            
+            try {
+                const webhookUrl = 'https://n8n-samson-lin-u44764.vm.elestio.app/webhook/send-isis-report-email';
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                if (response.ok) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <h4>✅ Webhook 測試成功！</h4>
+                        <p><strong>狀態碼：</strong>${response.status}</p>
+                        <p><strong>n8n 端點：</strong>正常回應</p>
+                    `;
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `
+                    <h4>❌ Webhook 測試失敗</h4>
+                    <p><strong>錯誤：</strong>${error.message}</p>
+                    <p><strong>建議：</strong>檢查 n8n 工作流程是否啟用</p>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '📧 測試 n8n Webhook';
+            }
+        }
+        
+        // 載入範例內容
+        function loadSampleData() {
+            const sampleContent = document.getElementById('testReportContent').placeholder;
+            document.getElementById('testReportContent').value = sampleContent;
+        }
+        
+        // 檢查系統狀態
+        async function checkSystemStatus() {
+            // 檢查後端 API
+            try {
+                const response = await fetch('/.netlify/functions/generate-isis-report', {
+                    method: 'OPTIONS'
+                });
+                document.getElementById('backendStatus').innerHTML = '✅ 後端 API：正常';
+            } catch (error) {
+                document.getElementById('backendStatus').innerHTML = '❌ 後端 API：異常';
+            }
+            
+            // 檢查 n8n Webhook
+            try {
+                const response = await fetch('https://n8n-samson-lin-u44764.vm.elestio.app/webhook/send-isis-report-email', {
+                    method: 'HEAD'
+                });
+                document.getElementById('webhookStatus').innerHTML = '✅ n8n Webhook：正常';
+            } catch (error) {
+                document.getElementById('webhookStatus').innerHTML = '❌ n8n Webhook：無法連接';
+            }
+        }
+        
+        // 頁面載入時檢查系統狀態
+        window.addEventListener('load', () => {
+            checkSystemStatus();
+        });
+    </script>
+</body>
+</html>

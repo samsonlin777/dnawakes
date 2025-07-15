@@ -1,0 +1,29 @@
+{
+  "name": "dnawakes-report-system",
+  "version": "1.0.0",
+  "description": "Isis DNA覺醒 - PDF報告生成寄發系統",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "netlify build",
+    "deploy": "netlify deploy",
+    "deploy:prod": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "pdfkit": "^0.15.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": [
+    "isis",
+    "dna",
+    "pdf",
+    "report",
+    "supabase"
+  ],
+  "author": "C小終",
+  "license": "MIT"
+}

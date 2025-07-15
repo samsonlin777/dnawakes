@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isis DNA覺醒 - PDF報告管理系統</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cinzel', 'Noto Sans TC', serif;
+            background: linear-gradient(135deg, #4A148C 0%, #6A1B9A 50%, #8E24AA 100%);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* 星空背景效果 */
+        body:before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .header h1 {
+            background: linear-gradient(45deg, #FFD700, #FFA000, #FF8F00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .auth-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .auth-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        
+        .auth-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .auth-button {
+            background: linear-gradient(45deg, #FFD700, #FFA000);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            color: #4A148C;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .main-content {
+            display: none;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .student-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #FFD700;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        th {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        td {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .plan-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .plan-1 { background: linear-gradient(45deg, #FF6B6B, #FF8E53); }
+        .plan-2 { background: linear-gradient(45deg, #4ECDC4, #44A08D); }
+        .plan-3 { background: linear-gradient(45deg, #A8E6CF, #88D8A3); }
+        
+        .action-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA000);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #4A148C;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2px;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+        }
+        
+        .action-btn.generated {
+            background: linear-gradient(45deg, #4CAF50, #45A049);
+            color: white;
+        }
+        
+        .report-editor {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            display: none;
+        }
+        
+        .editor-header {
+            margin-bottom: 25px;
+        }
+        
+        .student-info {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .report-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1em;
+            line-height: 1.6;
+            resize: vertical;
+        }
+        
+        .report-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .editor-actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cancel-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            padding: 15px;
+            border-radius: 10px;
+            color: #4CAF50;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .error-message {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            padding: 15px;
+            border-radius: 10px;
+            color: #f44336;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 標題區 -->
+        <div class="header">
+            <h1>✨ Isis DNA覺醒 ✨</h1>
+            <p>PDF報告管理系統</p>
+        </div>
+
+        <!-- 身份驗證區 -->
+        <div class="auth-section" id="authSection">
+            <h3 style="color: #FFD700; margin-bottom: 20px;">🔐 管理員登入</h3>
+            <input type="password" class="auth-input" id="adminPassword" placeholder="請輸入管理員密碼">
+            <button class="auth-button" onclick="authenticate()">登入</button>
+        </div>
+
+        <!-- 主要內容區 -->
+        <div class="main-content" id="mainContent">
+            <!-- 統計卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalOrders">12</div>
+                    <div class="stat-label">總訂單數</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingReports">8</div>
+                    <div class="stat-label">待生成報告</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedReports">4</div>
+                    <div class="stat-label">已完成報告</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalRevenue">168,888</div>
+                    <div class="stat-label">總收入 (NT$)</div>
+                </div>
+            </div>
+
+            <!-- 學員列表 -->
+            <div class="student-list">
+                <h2 class="section-title">📋 待生成報告的學員</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>訂單編號</th>
+                                <th>姓名</th>
+                                <th>Email</th>
+                                <th>方案</th>
+                                <th>金額</th>
+                                <th>購買日期</th>
+                                <th>狀態</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- 動態載入學員資料 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 報告編輯區 -->
+            <div class="report-editor" id="reportEditor">
+                <div class="editor-header">
+                    <h2 class="section-title">📝 建立報告</h2>
+                    <div class="student-info" id="studentInfo">
+                        <!-- 動態顯示學員資訊 -->
+                    </div>
+                </div>
+                
+                <textarea class="report-textarea" id="reportContent" 
+                          placeholder="請貼上或輸入學員的DNA財富報告內容...
+
+範例格式：
+========================
+🌟 靈魂特質分析
+========================
+[在此輸入靈魂特質分析內容]
+
+========================
+🎯 當下課題指引
+========================
+[在此輸入課題指引內容]
+
+======================== 
+⭐ 星際DNA
+========================
+[在此輸入星際DNA內容]
+
+========================
+💎 財富印記解密
+========================
+[在此輸入財富印記內容]
+
+========================
+🧠 神經系統枷鎖
+========================
+[在此輸入限制性信念分析]
+
+========================
+💕 靈魂告白
+========================
+[在此輸入靈魂與指導靈的訊息]
+
+========================
+🧬 祖先記憶
+========================
+[在此輸入祖先財富記憶內容]
+
+========================
+🔥 轉化指引
+========================
+[在此輸入具體的轉化步驟]"></textarea>
+                
+                <div class="editor-actions">
+                    <button class="generate-btn" onclick="generateReport()">🚀 生成PDF並寄送</button>
+                    <button class="cancel-btn" onclick="cancelEdit()">取消</button>
+                </div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>正在生成PDF報告並發送郵件...</p>
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    ✅ PDF報告已成功生成並寄送！
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    ❌ 處理失敗，請稍後再試。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 模擬學員資料
+        const mockStudents = [
+            {
+                id: 1,
+                orderNumber: 'DNA1730982456789',
+                name: '王美麗',
+                email: 'meili.wang@example.com',
+                plan: '暴富方案一',
+                amount: 16888,
+                purchaseDate: '2024-11-08',
+                birthDate: '1985-03-15',
+                status: 'pending'
+            },
+            {
+                id: 2,
+                orderNumber: 'DNA1730982456790',
+                name: '李雅婷',
+                email: 'yating.li@example.com',
+                plan: '集體揚升方案二',
+                amount: 5888,
+                purchaseDate: '2024-11-07',
+                birthDate: '1990-07-22',
+                status: 'pending'
+            },
+            {
+                id: 3,
+                orderNumber: 'DNA1730982456791',
+                name: '陳淑芬',
+                email: 'shufen.chen@example.com',
+                plan: '孤芳自修方案三',
+                amount: 3333,
+                purchaseDate: '2024-11-06',
+                birthDate: '1988-12-03',
+                status: 'completed'
+            },
+            {
+                id: 4,
+                orderNumber: 'DNA1730982456792',
+                name: '張小華',
+                email: 'xiaohua.zhang@example.com',
+                plan: '暴富方案一',
+                amount: 16888,
+                purchaseDate: '2024-11-05',
+                birthDate: '1992-09-18',
+                status: 'pending'
+            },
+            {
+                id: 5,
+                orderNumber: 'DNA1730982456793',
+                name: '劉心怡',
+                email: 'xinyi.liu@example.com',
+                plan: '集體揚升方案二',
+                amount: 5888,
+                purchaseDate: '2024-11-04',
+                birthDate: '1987-04-27',
+                status: 'pending'
+            }
+        ];
+
+        let currentStudent = null;
+
+        // 身份驗證
+        function authenticate() {
+            const password = document.getElementById('adminPassword').value;
+            // 簡單密碼驗證 (實際應用中應使用更安全的方式)
+            if (password === 'isis2025') {
+                document.getElementById('authSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                loadStudentData();
+            } else {
+                alert('密碼錯誤！');
+            }
+        }
+
+        // 載入學員資料
+        async function loadStudentData() {
+            const tbody = document.getElementById('studentTableBody');
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center;">載入中...</td></tr>';
+
+            try {
+                const response = await fetch('/.netlify/functions/get-students');
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error);
+                }
+
+                globalStudents = data.students;
+                tbody.innerHTML = '';
+
+                globalStudents.forEach(student => {
+                    const row = document.createElement('tr');
+                    const purchaseDate = new Date(student.createdAt).toLocaleDateString('zh-TW');
+                    
+                    row.innerHTML = `
+                        <td>${student.orderNumber}</td>
+                        <td>${student.name}</td>
+                        <td>${student.email}</td>
+                        <td><span class="plan-badge plan-${student.plan.includes('一') ? '1' : student.plan.includes('二') ? '2' : '3'}">${student.plan}</span></td>
+                        <td>NT$ ${student.amount.toLocaleString()}</td>
+                        <td>${purchaseDate}</td>
+                        <td>${student.reportStatus === 'pending' ? '⏳ 待處理' : '✅ 已完成'}</td>
+                        <td>
+                            ${student.reportStatus === 'pending' ? 
+                                `<button class="action-btn" onclick="editReport(${student.id})">建立報告</button>` :
+                                `<button class="action-btn generated">已完成</button>`
+                            }
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                updateStats();
+            } catch (error) {
+                console.error('載入學員資料失敗:', error);
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #ff6b6b;">載入失敗，請重新整理頁面</td></tr>';
+            }
+        }
+
+        // 更新統計資料
+        function updateStats() {
+            const totalOrders = mockStudents.length;
+            const pendingReports = mockStudents.filter(s => s.status === 'pending').length;
+            const completedReports = mockStudents.filter(s => s.status === 'completed').length;
+            const totalRevenue = mockStudents.reduce((sum, s) => sum + s.amount, 0);
+
+            document.getElementById('totalOrders').textContent = totalOrders;
+            document.getElementById('pendingReports').textContent = pendingReports;
+            document.getElementById('completedReports').textContent = completedReports;
+            document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString();
+        }
+
+        // 編輯報告
+        function editReport(studentId) {
+            currentStudent = mockStudents.find(s => s.id === studentId);
+            if (!currentStudent) return;
+
+            // 顯示編輯區
+            document.getElementById('reportEditor').style.display = 'block';
+            
+            // 填入學員資訊
+            document.getElementById('studentInfo').innerHTML = `
+                <h3 style="color: #FFD700; margin-bottom: 15px;">👤 學員資訊</h3>
+                <p><strong>姓名：</strong>${currentStudent.name}</p>
+                <p><strong>方案：</strong>${currentStudent.plan}</p>
+                <p><strong>Email：</strong>${currentStudent.email}</p>
+                <p><strong>生日：</strong>${currentStudent.birthDate}</p>
+                <p><strong>密碼：</strong>${generatePassword(currentStudent.birthDate)} (使用生日YYYYMMDD格式)</p>
+            `;
+
+            // 滾動到編輯區
+            document.getElementById('reportEditor').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // 生成密碼
+        function generatePassword(birthDate) {
+            return birthDate.replace(/-/g, '');
+        }
+
+        // 取消編輯
+        function cancelEdit() {
+            document.getElementById('reportEditor').style.display = 'none';
+            document.getElementById('reportContent').value = '';
+            currentStudent = null;
+        }
+
+        // 生成報告
+        async function generateReport() {
+            if (!currentStudent) return;
+
+            const reportContent = document.getElementById('reportContent').value.trim();
+            if (!reportContent) {
+                alert('請輸入報告內容！');
+                return;
+            }
+
+            // 顯示載入狀態
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            try {
+                // 模擬API調用
+                const response = await fetch('/.netlify/functions/generate-isis-report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        student: currentStudent,
+                        reportContent: reportContent,
+                        password: generatePassword(currentStudent.birthDate)
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // 更新學員狀態
+                    currentStudent.status = 'completed';
+                    
+                    // 重新載入表格
+                    loadStudentData();
+                    
+                    // 顯示成功訊息
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // 3秒後關閉編輯區
+                    setTimeout(() => {
+                        cancelEdit();
+                    }, 3000);
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+            } catch (error) {
+                console.error('生成報告錯誤:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = '❌ ' + error.message;
+            } finally {
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }
+        }
+
+        // Enter鍵登入
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                authenticate();
+            }
+        });
+    </script>
+</body>
+</html>
