@@ -128,10 +128,9 @@ async function generatePDF(student, reportContent, password) {
             const goldColor = '#FFD700';
             const textColor = '#333333';
 
-            // 標題頁
+            // 標題頁 - 使用系統預設字體
             doc.fontSize(28)
                .fillColor(primaryColor)
-               .font('Helvetica-Bold')
                .text('✨ Isis DNA覺醒 ✨', { align: 'center' });
 
             doc.moveDown();
@@ -148,11 +147,9 @@ async function generatePDF(student, reportContent, password) {
 
             doc.fontSize(16)
                .fillColor(textColor)
-               .font('Helvetica-Bold')
                .text('👤 學員資訊', 70, infoBoxY + 20);
 
             doc.fontSize(12)
-               .font('Helvetica')
                .text(`姓名：${student.name}`, 70, infoBoxY + 50)
                .text(`方案：${student.plan}`, 70, infoBoxY + 70)
                .text(`生成日期：${new Date().toLocaleDateString('zh-TW')}`, 70, infoBoxY + 90);
@@ -160,7 +157,6 @@ async function generatePDF(student, reportContent, password) {
             // 浮水印 - 學員姓名
             doc.fontSize(60)
                .fillColor('#f0f0f0')
-               .font('Helvetica-Bold')
                .text(student.name, 0, 400, {
                    align: 'center',
                    opacity: 0.1
@@ -172,7 +168,6 @@ async function generatePDF(student, reportContent, password) {
             // 報告內容標題
             doc.fontSize(20)
                .fillColor(primaryColor)
-               .font('Helvetica-Bold')
                .text('🌟 您專屬的財富DNA報告', { align: 'center' });
 
             doc.moveDown(2);
@@ -195,7 +190,6 @@ async function generatePDF(student, reportContent, password) {
                         // 章節標題
                         doc.fontSize(16)
                            .fillColor(goldColor)
-                           .font('Helvetica-Bold')
                            .text(title, { align: 'left' });
 
                         doc.moveDown(0.5);
@@ -203,7 +197,6 @@ async function generatePDF(student, reportContent, password) {
                         // 章節內容
                         doc.fontSize(11)
                            .fillColor(textColor)
-                           .font('Helvetica')
                            .text(content, {
                                align: 'justify',
                                lineGap: 3

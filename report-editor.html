@@ -506,27 +506,120 @@
             }
 
             // 創建預覽窗口
-            const previewWindow = window.open('', '_blank', 'width=800,height=600');
+            const previewWindow = window.open('', '_blank', 'width=900,height=700');
+            
+            // 處理報告內容格式化
+            const formattedContent = formatContentForPreview(content);
+            
             previewWindow.document.write(`
                 <!DOCTYPE html>
                 <html>
                 <head>
                     <title>報告預覽 - ${currentStudent.name}</title>
+                    <meta charset="UTF-8">
                     <style>
-                        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; padding: 20px; }
-                        h1 { color: #4A148C; text-align: center; }
-                        h2 { color: #FFD700; border-bottom: 2px solid #FFD700; padding-bottom: 5px; }
-                        .section { margin-bottom: 30px; }
-                        .content { white-space: pre-wrap; }
+                        body { 
+                            font-family: 'Microsoft YaHei', 'Noto Sans TC', sans-serif; 
+                            line-height: 1.8; 
+                            padding: 40px; 
+                            background: #f8f9fa;
+                            color: #333;
+                        }
+                        .container {
+                            max-width: 700px;
+                            margin: 0 auto;
+                            background: white;
+                            padding: 40px;
+                            border-radius: 15px;
+                            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                        }
+                        h1 { 
+                            color: #4A148C; 
+                            text-align: center; 
+                            font-size: 2.2em;
+                            margin-bottom: 10px;
+                            border-bottom: 3px solid #FFD700;
+                            padding-bottom: 15px;
+                        }
+                        .student-info {
+                            background: #f0f8ff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            margin-bottom: 30px;
+                            border-left: 5px solid #4A148C;
+                        }
+                        .section-title { 
+                            color: #FFD700; 
+                            background: #4A148C;
+                            padding: 12px 20px;
+                            border-radius: 8px;
+                            font-size: 1.3em;
+                            font-weight: bold;
+                            margin: 30px 0 15px 0;
+                        }
+                        .section-content { 
+                            margin-bottom: 25px; 
+                            padding: 20px;
+                            background: #fafafa;
+                            border-radius: 8px;
+                            border-left: 4px solid #FFD700;
+                            line-height: 1.9;
+                        }
+                        .content { 
+                            white-space: pre-wrap; 
+                            font-size: 1.1em;
+                        }
+                        .divider {
+                            height: 2px;
+                            background: linear-gradient(to right, #4A148C, #FFD700, #4A148C);
+                            margin: 30px 0;
+                            border-radius: 2px;
+                        }
                     </style>
                 </head>
                 <body>
-                    <h1>Isis DNA覺醒報告 - ${currentStudent.name}</h1>
-                    <div class="content">${content}</div>
+                    <div class="container">
+                        <h1>✨ Isis DNA覺醒報告 ✨</h1>
+                        <div class="student-info">
+                            <strong>學員：</strong>${currentStudent.name}<br>
+                            <strong>方案：</strong>${currentStudent.plan}<br>
+                            <strong>預覽日期：</strong>${new Date().toLocaleDateString('zh-TW')}
+                        </div>
+                        <div class="divider"></div>
+                        ${formattedContent}
+                    </div>
                 </body>
                 </html>
             `);
             previewWindow.document.close();
+        }
+
+        // 格式化內容用於預覽
+        function formatContentForPreview(content) {
+            // 分割內容為各章節
+            const sections = content.split('========================').filter(section => section.trim());
+            
+            let formattedHtml = '';
+            
+            sections.forEach(section => {
+                const lines = section.trim().split('\n');
+                const title = lines[0];
+                const sectionContent = lines.slice(1).join('\n').trim();
+                
+                if (title && sectionContent) {
+                    // 清理標題（移除emoji）
+                    const cleanTitle = title.replace(/[🌟🎯⭐💎🧠💕🧬🔥]/g, '').trim();
+                    
+                    formattedHtml += `
+                        <div class="section-title">${title}</div>
+                        <div class="section-content">
+                            <div class="content">${sectionContent}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            return formattedHtml;
         }
 
         // 生成報告
