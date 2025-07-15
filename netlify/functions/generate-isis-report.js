@@ -218,7 +218,7 @@ async function generatePDF(student, reportContent, password) {
 
 // 觸發 n8n webhook
 async function triggerN8nWebhook(data) {
-    const webhookUrl = process.env.N8N_WEBHOOK_URL || 'https://n8n-samson-lin-u44764.vm.elestio.app/webhook/send-isis-report-email';
+    const webhookUrl = process.env.N8N_WEBHOOK_URL || 'https://n8n-samson-lin-u44764.vm.elestio.app/webhook/send-report-email';
     
     console.log('📧 Triggering n8n webhook for email sending');
     
