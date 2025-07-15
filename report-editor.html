@@ -529,37 +529,9 @@
                             max-width: 700px;
                             margin: 0 auto;
                             background: white;
-                            padding: 0;
+                            padding: 40px;
                             border-radius: 15px;
                             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                        }
-                        .page {
-                            background: white;
-                            padding: 40px;
-                            margin-bottom: 20px;
-                            min-height: 700px; /* 最小高度，可以自動延伸 */
-                            max-height: 900px; /* 最大高度避免過長 */
-                            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                            border-radius: 8px;
-                            page-break-after: always;
-                            overflow-y: auto;
-                            position: relative;
-                        }
-                        .page:last-child {
-                            margin-bottom: 0;
-                        }
-                        .page-number {
-                            position: absolute;
-                            bottom: 20px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            text-align: center;
-                            color: #999;
-                            font-size: 0.9em;
-                            padding: 10px;
-                            border-top: 1px solid #eee;
-                            background: white;
-                            width: 100px;
                         }
                         h1 { 
                             color: #4A148C; 
@@ -607,20 +579,14 @@
                 </head>
                 <body>
                     <div class="container">
-                        <div class="page">
-                            <h1>✨ Isis DNA覺醒報告 ✨</h1>
-                            <div class="student-info">
-                                <strong>學員：</strong>${currentStudent.name}<br>
-                                <strong>方案：</strong>${currentStudent.plan}<br>
-                                <strong>預覽日期：</strong>${new Date().toLocaleDateString('zh-TW')}
-                            </div>
-                            <div class="page-number">第 1 頁</div>
+                        <h1>✨ Isis DNA覺醒報告 ✨</h1>
+                        <div class="student-info">
+                            <strong>學員：</strong>${currentStudent.name}<br>
+                            <strong>方案：</strong>${currentStudent.plan}<br>
+                            <strong>預覽日期：</strong>${new Date().toLocaleDateString('zh-TW')}
                         </div>
-                        <div class="page">
-                            <div class="divider"></div>
-                            ${formattedContent}
-                            <div class="page-number">第 2 頁</div>
-                        </div>
+                        <div class="divider"></div>
+                        ${formattedContent}
                     </div>
                 </body>
                 </html>
@@ -628,46 +594,28 @@
             previewWindow.document.close();
         }
 
-        // 格式化內容用於預覽 - 簡單按章節分頁
+        // 格式化內容用於預覽 - 簡單單頁顯示
         function formatContentForPreview(content) {
             const sections = content.split('========================').filter(section => section.trim());
             
-            // 每2-3個章節分一頁，避免複雜計算
-            let pagesHtml = '';
-            let currentPageContent = '';
-            let sectionsInPage = 0;
-            let pageNumber = 2; // 從第2頁開始（第1頁是封面）
+            let formattedHtml = '';
             
-            sections.forEach((section, index) => {
+            sections.forEach(section => {
                 const lines = section.trim().split('\n');
                 const title = lines[0];
                 const sectionContent = lines.slice(1).join('\n').trim();
                 
                 if (title && sectionContent) {
-                    currentPageContent += `
+                    formattedHtml += `
                         <div class="section-title">${title}</div>
                         <div class="section-content">
                             <div class="content">${sectionContent}</div>
                         </div>
                     `;
-                    sectionsInPage++;
-                    
-                    // 每2個章節或最後一個章節就分頁
-                    if (sectionsInPage >= 2 || index === sections.length - 1) {
-                        pagesHtml += `
-                            <div class="page">
-                                ${currentPageContent}
-                                <div class="page-number">第 ${pageNumber} 頁</div>
-                            </div>
-                        `;
-                        currentPageContent = '';
-                        sectionsInPage = 0;
-                        pageNumber++;
-                    }
                 }
             });
             
-            return pagesHtml;
+            return formattedHtml;
         }
 
         // 生成報告
