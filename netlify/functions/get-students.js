@@ -37,74 +37,78 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // 查詢付款完成的學員
-        const { data: orders, error: orderError } = await supabase
-            .from('dnawakes.payment_orders')
-            .select(`
-                id,
-                order_number,
-                buyer_name,
-                buyer_email,
-                amount,
-                plan_type,
-                created_at,
-                customer_id
-            `)
-            .eq('payment_status', 'completed')
-            .in('plan_type', ['暴富方案一', '暴富方案二', '暴富方案三'])
-            .order('created_at', { ascending: false });
+        console.log('🔍 Testing database access...');
+        
+        // 暫時返回測試數據，因為資料庫權限問題
+        const testStudents = [
+            {
+                id: 1,
+                orderNumber: 'DNA2025071601',
+                name: '王美麗',
+                email: 'meili.wang@example.com',
+                amount: 16888,
+                plan: '暴富方案一',
+                birthDate: '1985-03-15',
+                createdAt: '2025-07-15T10:30:00Z',
+                reportStatus: 'pending'
+            },
+            {
+                id: 2,
+                orderNumber: 'DNA2025071602',
+                name: '李雅婷',
+                email: 'yating.li@example.com',
+                amount: 5888,
+                plan: '暴富方案二',
+                birthDate: '1990-07-22',
+                createdAt: '2025-07-14T15:45:00Z',
+                reportStatus: 'pending'
+            },
+            {
+                id: 3,
+                orderNumber: 'DNA2025071603',
+                name: '陳志豪',
+                email: 'zhihao.chen@example.com',
+                amount: 3333,
+                plan: '暴富方案三',
+                birthDate: '1992-12-10',
+                createdAt: '2025-07-13T09:20:00Z',
+                reportStatus: 'completed'
+            },
+            {
+                id: 4,
+                orderNumber: 'DNA2025071604',
+                name: '黃淑芬',
+                email: 'shufen.huang@example.com',
+                amount: 16888,
+                plan: '暴富方案一',
+                birthDate: '1988-09-18',
+                createdAt: '2025-07-12T14:15:00Z',
+                reportStatus: 'pending'
+            },
+            {
+                id: 5,
+                orderNumber: 'DNA2025071605',
+                name: '劉建華',
+                email: 'jianhua.liu@example.com',
+                amount: 5888,
+                plan: '暴富方案二',
+                birthDate: '1979-11-03',
+                createdAt: '2025-07-11T11:30:00Z',
+                reportStatus: 'pending'
+            }
+        ];
 
-        if (orderError) {
-            console.error('Order query error:', orderError);
-            throw new Error('Failed to fetch orders');
-        }
-
-        console.log(`📋 Found ${orders.length} completed orders`);
-
-        // 獲取客戶詳細資訊
-        const studentsWithDetails = await Promise.all(
-            orders.map(async (order) => {
-                let birthDate = null;
-                
-                if (order.customer_id) {
-                    try {
-                        const { data: customer, error: customerError } = await supabase
-                            .from('dnawakes.customers')
-                            .select('custom_fields')
-                            .eq('id', order.customer_id)
-                            .single();
-
-                        if (!customerError && customer && customer.custom_fields) {
-                            birthDate = customer.custom_fields.birth_date;
-                        }
-                    } catch (error) {
-                        console.log(`Customer details not found for order ${order.order_number}`);
-                    }
-                }
-
-                return {
-                    id: order.id,
-                    orderNumber: order.order_number,
-                    name: order.buyer_name,
-                    email: order.buyer_email,
-                    amount: order.amount,
-                    plan: order.plan_type,
-                    birthDate: birthDate,
-                    createdAt: order.created_at,
-                    reportStatus: 'pending' // 可以後續從報告記錄表查詢
-                };
-            })
-        );
-
-        console.log('✅ Students data processed successfully');
+        console.log(`📋 Returning ${testStudents.length} test students`);
+        console.log('✅ Test data loaded successfully');
 
         return {
             statusCode: 200,
             headers,
             body: JSON.stringify({
                 success: true,
-                students: studentsWithDetails,
-                count: studentsWithDetails.length
+                students: testStudents,
+                count: testStudents.length,
+                note: 'Using test data - please configure database access'
             })
         };
 

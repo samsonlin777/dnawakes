@@ -378,20 +378,12 @@
             <!-- 統計數據 -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" id="totalOrders">0</div>
-                    <div>總付款訂單</div>
-                </div>
-                <div class="stat-card">
                     <div class="stat-number" id="pendingReports">0</div>
                     <div>待生成報告</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="completedReports">0</div>
                     <div>已完成報告</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">NT$ <span id="totalRevenue">0</span></div>
-                    <div>總收入</div>
                 </div>
             </div>
 
@@ -524,15 +516,11 @@
 
         // 更新統計資料
         function updateStats() {
-            const totalOrders = globalStudents.length;
             const pendingReports = globalStudents.filter(s => s.reportStatus === 'pending').length;
             const completedReports = globalStudents.filter(s => s.reportStatus === 'completed').length;
-            const totalRevenue = globalStudents.reduce((sum, s) => sum + s.amount, 0);
 
-            document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('pendingReports').textContent = pendingReports;
             document.getElementById('completedReports').textContent = completedReports;
-            document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString();
         }
 
         // 輸入框事件
