@@ -95,145 +95,125 @@ exports.handler = async (event, context) => {
 
 // 生成 PDF 函數
 async function generatePDF(student, reportContent, password) {
-    const PDFDocument = require('pdfkit');
+    const { jsPDF } = require('jspdf');
     
-    return new Promise((resolve, reject) => {
-        try {
-            console.log('📄 Generating PDF for:', student.name);
-            
-            // 創建 PDF 文檔
-            const doc = new PDFDocument({
-                size: 'A4',
-                margins: { top: 50, bottom: 50, left: 50, right: 50 },
-                info: {
-                    Title: `Isis DNA覺醒報告 - ${student.name}`,
-                    Author: 'Isis 女神',
-                    Subject: 'DNA財富覺醒報告',
-                    Creator: 'Isis DNA覺醒系統'
+    try {
+        console.log('📄 Generating PDF for:', student.name);
+        
+        // 創建 PDF 文檔
+        const doc = new jsPDF({
+            format: 'a4',
+            unit: 'mm'
+        });
+
+        // 設定中文字體支援
+        doc.setFont('helvetica');
+        
+        // 標題頁
+        doc.setFontSize(24);
+        doc.setTextColor(74, 20, 140); // #4A148C
+        doc.text('✨ Isis DNA覺醒 ✨', 105, 30, { align: 'center' });
+        
+        doc.setFontSize(18);
+        doc.setTextColor(255, 215, 0); // #FFD700
+        doc.text('財富DNA編碼報告', 105, 50, { align: 'center' });
+
+        // 學員資訊框
+        doc.setDrawColor(221, 221, 221);
+        doc.setFillColor(248, 249, 250);
+        doc.roundedRect(20, 70, 170, 40, 3, 3, 'FD');
+        
+        doc.setFontSize(14);
+        doc.setTextColor(51, 51, 51);
+        doc.text('👤 學員資訊', 25, 85);
+        
+        doc.setFontSize(12);
+        doc.text(`姓名：${student.name}`, 25, 95);
+        doc.text(`方案：${student.plan}`, 25, 102);
+        doc.text(`生成日期：${new Date().toLocaleDateString('zh-TW')}`, 25, 109);
+
+        // 浮水印
+        doc.setGState(new doc.GState({ opacity: 0.1 }));
+        doc.setFontSize(40);
+        doc.setTextColor(240, 240, 240);
+        doc.text(student.name, 105, 150, { align: 'center' });
+        
+        // 重設透明度
+        doc.setGState(new doc.GState({ opacity: 1 }));
+
+        // 新頁面 - 報告內容
+        doc.addPage();
+        
+        doc.setFontSize(18);
+        doc.setTextColor(74, 20, 140);
+        doc.text('🌟 您專屬的財富DNA報告', 105, 30, { align: 'center' });
+
+        let yPosition = 50;
+        
+        // 處理報告內容
+        const sections = reportContent.split('========================').filter(s => s.trim());
+        
+        sections.forEach((section, index) => {
+            const lines = section.trim().split('\n');
+            const title = lines[0];
+            const content = lines.slice(1).join('\n').trim();
+
+            if (title && content) {
+                // 檢查是否需要新頁面
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
                 }
-                // Note: 密碼保護功能在 Netlify Functions 中可能不支援，先移除
-            });
 
-            const chunks = [];
-            
-            doc.on('data', chunk => chunks.push(chunk));
-            doc.on('end', () => {
-                const pdfBuffer = Buffer.concat(chunks);
-                const pdfBase64 = pdfBuffer.toString('base64');
-                resolve(pdfBase64);
-            });
+                // 章節標題
+                doc.setFontSize(14);
+                doc.setTextColor(255, 215, 0);
+                doc.text(title, 20, yPosition);
+                yPosition += 10;
 
-            // PDF 樣式設定
-            const primaryColor = '#4A148C';
-            const goldColor = '#FFD700';
-            const textColor = '#333333';
-
-            // 標題頁 - 使用系統預設字體
-            doc.fontSize(28)
-               .fillColor(primaryColor)
-               .text('✨ Isis DNA覺醒 ✨', { align: 'center' });
-
-            doc.moveDown();
-            doc.fontSize(22)
-               .fillColor(goldColor)
-               .text('財富DNA編碼報告', { align: 'center' });
-
-            doc.moveDown(2);
-
-            // 學員資訊框
-            const infoBoxY = doc.y;
-            doc.rect(50, infoBoxY, 495, 120)
-               .fillAndStroke('#f8f9fa', '#ddd');
-
-            doc.fontSize(16)
-               .fillColor(textColor)
-               .text('👤 學員資訊', 70, infoBoxY + 20);
-
-            doc.fontSize(12)
-               .text(`姓名：${student.name}`, 70, infoBoxY + 50)
-               .text(`方案：${student.plan}`, 70, infoBoxY + 70)
-               .text(`生成日期：${new Date().toLocaleDateString('zh-TW')}`, 70, infoBoxY + 90);
-
-            // 浮水印 - 學員姓名
-            doc.fontSize(60)
-               .fillColor('#f0f0f0')
-               .text(student.name, 0, 400, {
-                   align: 'center',
-                   opacity: 0.1
-               });
-
-            // 新頁面開始報告內容
-            doc.addPage();
-
-            // 報告內容標題
-            doc.fontSize(20)
-               .fillColor(primaryColor)
-               .text('🌟 您專屬的財富DNA報告', { align: 'center' });
-
-            doc.moveDown(2);
-
-            // 處理報告內容
-            const sections = reportContent.split('========================');
-            
-            sections.forEach((section, index) => {
-                if (section.trim()) {
-                    const lines = section.trim().split('\n');
-                    const title = lines[0];
-                    const content = lines.slice(1).join('\n').trim();
-
-                    if (title && content) {
-                        // 檢查是否需要新頁面
-                        if (doc.y > 700) {
-                            doc.addPage();
-                        }
-
-                        // 章節標題
-                        doc.fontSize(16)
-                           .fillColor(goldColor)
-                           .text(title, { align: 'left' });
-
-                        doc.moveDown(0.5);
-
-                        // 章節內容
-                        doc.fontSize(11)
-                           .fillColor(textColor)
-                           .text(content, {
-                               align: 'justify',
-                               lineGap: 3
-                           });
-
-                        doc.moveDown(1.5);
-                    }
-                }
-            });
-
-            // 頁腳
-            const pageCount = doc.bufferedPageRange().count;
-            for (let i = 0; i < pageCount; i++) {
-                doc.switchToPage(i);
+                // 章節內容
+                doc.setFontSize(10);
+                doc.setTextColor(51, 51, 51);
                 
-                // 頁碼
-                doc.fontSize(10)
-                   .fillColor('#666')
-                   .text(`第 ${i + 1} 頁，共 ${pageCount} 頁`, 
-                          50, doc.page.height - 30, 
-                          { align: 'center' });
-
-                // 版權資訊
-                if (i === 0) {
-                    doc.text('© 2025 Isis 女神 - 此報告為個人專屬，請勿分享',
-                             50, doc.page.height - 50,
-                             { align: 'center' });
-                }
+                // 分割長文字
+                const textLines = doc.splitTextToSize(content, 170);
+                textLines.forEach(line => {
+                    if (yPosition > 270) {
+                        doc.addPage();
+                        yPosition = 30;
+                    }
+                    doc.text(line, 20, yPosition);
+                    yPosition += 5;
+                });
+                
+                yPosition += 10; // 章節間距
             }
+        });
 
-            doc.end();
-
-        } catch (error) {
-            console.error('PDF generation error:', error);
-            reject(error);
+        // 頁腳
+        const pageCount = doc.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            
+            // 頁碼
+            doc.setFontSize(8);
+            doc.setTextColor(102, 102, 102);
+            doc.text(`第 ${i} 頁，共 ${pageCount} 頁`, 105, 285, { align: 'center' });
+            
+            // 版權資訊（僅第一頁）
+            if (i === 1) {
+                doc.text('© 2025 Isis 女神 - 此報告為個人專屬，請勿分享', 105, 280, { align: 'center' });
+            }
         }
-    });
+
+        // 轉換為 base64
+        const pdfBase64 = doc.output('datauristring').split(',')[1];
+        return pdfBase64;
+
+    } catch (error) {
+        console.error('PDF generation error:', error);
+        throw error;
+    }
 }
 
 // 觸發 n8n webhook
