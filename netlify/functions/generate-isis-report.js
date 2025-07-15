@@ -58,8 +58,11 @@ exports.handler = async (event, context) => {
                 studentEmail: student.email,
                 planType: student.plan,
                 pdfBase64: pdfBase64,
+                pdfFileName: `DNA覺醒報告_${student.name}.pdf`,
                 password: password,
-                reportDate: new Date().toISOString()
+                reportDate: new Date().toISOString(),
+                emailSubject: `🌟 您的 Isis DNA覺醒報告已完成 - ${student.name}`,
+                emailMessage: `親愛的 ${student.name}，\n\n您的 DNA 財富覺醒報告已生成完成！\n\n報告詳情：\n• 方案：${student.plan}\n• PDF 密碼：${password}\n• 生成日期：${new Date().toLocaleDateString('zh-TW')}\n\n請下載附件查看您的專屬報告。\n\n祝您財富覺醒！\nIsis 女神 ✨`
             });
         } catch (webhookError) {
             console.error('⚠️ Webhook failed, but PDF generated successfully:', webhookError.message);
