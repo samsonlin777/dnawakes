@@ -61,6 +61,9 @@ exports.handler = async (event, context) => {
             reportDate: new Date().toISOString()
         });
 
+        // 更新報告狀態為已發送
+        await updateReportStatus(student.orderNumber, 'sent');
+
         // 記錄到資料庫 (可選)
         await logReportGeneration(student, reportContent);
 
@@ -266,6 +269,28 @@ async function triggerN8nWebhook(data) {
     } catch (error) {
         console.error('❌ n8n webhook error:', error);
         throw error;
+    }
+}
+
+// 更新報告狀態
+async function updateReportStatus(orderNumber, status) {
+    try {
+        console.log(`📝 Updating report status for order ${orderNumber} to ${status}`);
+        
+        const { data, error } = await supabase
+            .rpc('dnawakes_update_report_status', {
+                p_order_number: orderNumber,
+                p_status: status
+            });
+
+        if (error) {
+            console.error('❌ Error updating report status:', error);
+            // 不拋出錯誤，因為這不是關鍵功能
+        } else {
+            console.log('✅ Report status updated successfully');
+        }
+    } catch (error) {
+        console.error('❌ Error updating report status:', error);
     }
 }
 
