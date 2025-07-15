@@ -537,10 +537,13 @@
                             background: white;
                             padding: 40px;
                             margin-bottom: 20px;
-                            min-height: 800px;
+                            height: 850px; /* 固定A4頁面高度 */
                             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                             border-radius: 8px;
                             page-break-after: always;
+                            overflow: hidden;
+                            display: flex;
+                            flex-direction: column;
                         }
                         .page:last-child {
                             margin-bottom: 0;
@@ -620,32 +623,61 @@
             previewWindow.document.close();
         }
 
-        // 格式化內容用於預覽
+        // 格式化內容用於預覽 - 自動分頁
         function formatContentForPreview(content) {
-            // 分割內容為各章節
             const sections = content.split('========================').filter(section => section.trim());
             
-            let formattedHtml = '';
+            let pages = [];
+            let currentPageContent = '';
+            let currentPageHeight = 0;
+            const maxPageHeight = 600; // 模擬A4頁面高度
             
-            sections.forEach(section => {
+            sections.forEach((section, index) => {
                 const lines = section.trim().split('\n');
                 const title = lines[0];
                 const sectionContent = lines.slice(1).join('\n').trim();
                 
                 if (title && sectionContent) {
-                    // 清理標題（移除emoji）
-                    const cleanTitle = title.replace(/[🌟🎯⭐💎🧠💕🧬🔥]/g, '').trim();
+                    // 估算內容高度 (簡單計算)
+                    const titleHeight = 40;
+                    const contentLines = sectionContent.split('\n').length;
+                    const contentHeight = contentLines * 25 + 60; // 每行約25px + padding
+                    const sectionHeight = titleHeight + contentHeight;
                     
-                    formattedHtml += `
+                    // 檢查是否需要新頁面
+                    if (currentPageHeight + sectionHeight > maxPageHeight && currentPageContent !== '') {
+                        pages.push(currentPageContent);
+                        currentPageContent = '';
+                        currentPageHeight = 0;
+                    }
+                    
+                    currentPageContent += `
                         <div class="section-title">${title}</div>
                         <div class="section-content">
                             <div class="content">${sectionContent}</div>
                         </div>
                     `;
+                    currentPageHeight += sectionHeight;
                 }
             });
             
-            return formattedHtml;
+            // 加入最後一頁
+            if (currentPageContent !== '') {
+                pages.push(currentPageContent);
+            }
+            
+            // 產生分頁HTML
+            let pagesHtml = '';
+            pages.forEach((pageContent, index) => {
+                pagesHtml += `
+                    <div class="page">
+                        ${pageContent}
+                        <div class="page-number">第 ${index + 2} 頁</div>
+                    </div>
+                `;
+            });
+            
+            return pagesHtml;
         }
 
         // 生成報告

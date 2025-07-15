@@ -51,15 +51,20 @@ exports.handler = async (event, context) => {
         const pdfBase64 = await generatePDF(student, reportContent, password);
         
         // 觸發 n8n webhook 發送郵件
-        await triggerN8nWebhook({
-            orderNumber: student.orderNumber,
-            studentName: student.name,
-            studentEmail: student.email,
-            planType: student.plan,
-            pdfBase64: pdfBase64,
-            password: password,
-            reportDate: new Date().toISOString()
-        });
+        try {
+            await triggerN8nWebhook({
+                orderNumber: student.orderNumber,
+                studentName: student.name,
+                studentEmail: student.email,
+                planType: student.plan,
+                pdfBase64: pdfBase64,
+                password: password,
+                reportDate: new Date().toISOString()
+            });
+        } catch (webhookError) {
+            console.error('⚠️ Webhook failed, but PDF generated successfully:', webhookError.message);
+            // 繼續執行，不因為 webhook 失敗而中斷
+        }
 
         // 更新報告狀態為已發送
         await updateReportStatus(student.orderNumber, 'sent');
