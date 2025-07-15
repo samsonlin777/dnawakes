@@ -97,12 +97,9 @@
         }
         
         .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             background: linear-gradient(45deg, #daa520, #ffd700);
             border: none;
-            padding: 12px 24px;
+            padding: 15px 30px;
             border-radius: 25px;
             color: #1a4332;
             font-weight: 600;
@@ -110,6 +107,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.3);
         }
         
         .back-button:hover {
@@ -337,9 +336,8 @@
     <!-- Sacred Starfield -->
     <div class="starfield" id="starfield"></div>
     
-    <a href="dashboard.html" class="back-button">← 返回儀表板</a>
-    
     <div class="container">
+        <a href="dashboard.html" class="back-button">← 返回儀表板</a>
         <div class="header">
             <h1>📝 PDF 報告編輯器</h1>
             <p>為學員建立專屬的 DNA 財富覺醒報告</p>
@@ -402,6 +400,14 @@
 
         // 頁面載入時初始化
         window.addEventListener('load', function() {
+            // 檢查登入狀態，如果未登入則跳轉回儀表板
+            const isLoggedIn = sessionStorage.getItem('isisAdminAuth');
+            if (isLoggedIn !== 'true') {
+                alert('請先登入系統');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
             createStarfield();
             loadStudentInfo();
         });
@@ -662,9 +668,10 @@
                 if (result.success) {
                     showStatus('✅ PDF 報告已生成並發送給學員！', 'success');
                     
-                    // 3秒後返回儀表板
+                    // 3秒後返回儀表板（保持登入狀態）
                     setTimeout(() => {
                         localStorage.removeItem('currentStudent');
+                        // 不清除 sessionStorage，保持登入狀態
                         window.location.href = 'dashboard.html';
                     }, 3000);
                 } else {

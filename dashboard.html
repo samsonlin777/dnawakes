@@ -401,10 +401,22 @@
         // 全域變數
         let globalStudents = [];
 
+        // 頁面載入時檢查是否已登入
+        window.addEventListener('load', function() {
+            const isLoggedIn = sessionStorage.getItem('isisAdminAuth');
+            if (isLoggedIn === 'true') {
+                document.getElementById('authSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                loadStudentData();
+            }
+        });
+
         // 身份驗證
         function authenticate() {
             const password = document.getElementById('adminPassword').value;
             if (password === 'isis2025') {
+                // 記住登入狀態
+                sessionStorage.setItem('isisAdminAuth', 'true');
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
                 loadStudentData();
